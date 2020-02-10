@@ -88,7 +88,7 @@ class DB
             $stmt->bind_param("sss",$last,$first,$nick);
             $stmt->execute();
             $stmt->store_result();
-            $insertId = $stmt->insertId;
+            $insertId = $stmt->insert_id;
         }
     } // insert
 
@@ -151,7 +151,7 @@ class DB
 
         if ($stmt = $this->conn->prepare($query))
         {
-            $refArr = array_merge(array($types));
+            $refArr = array_merge(array($types), $items);
             $ref    = new ReflectionClass('mysqli_stmt');
             $method = $ref->getMethod("bind_param");
             $method->invokeArgs($stmt, $refArr);
