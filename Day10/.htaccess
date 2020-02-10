@@ -1,0 +1,5 @@
+SetEnv DB emr9018
+SetEnv DB_SERVER localhost
+SetEnv DB_PASSWORD billbring
+SetEnv DB_USER emr9018
+# put in main .htaccess file if you want to affect whole site
