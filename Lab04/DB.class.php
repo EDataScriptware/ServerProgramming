@@ -62,7 +62,7 @@ class DB
                             foreach ($data as $row)
                             {
                                 $bigString .= "<tr>
-                                    <td><a href='phones.php?id={$row['id']}'>{$row['id']}</a></td>
+                                    <td><a href='Lab4_2.php?id={$row['id']}'>{$row['id']}</a></td>
                                     <td>{$row['first']}</td>
                                     <td>{$row['last']}</td>
                                     <td>{$row['nick']}</td>                                    
@@ -78,6 +78,65 @@ class DB
         return $bigString;
         
     }
+
+    function getAllPhone($id)
+    {
+        $data = array();
+
+        if($stmt = $this->conn->prepare("SELECT * FROM phonenumbers WHERE PersonID= " . $id . ";"));
+        {
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($id, $type, $phoneNumber, $areaCode);
+            $numRows = $stmt->num_rows;
+
+            if ($numRows > 0)
+            {
+                while ($stmt->fetch())
+                {
+                    $data[] = array('id'=>$id,'type'=>$type,'phonenumber'=>$phoneNumber,'areacode'=>$areaCode);
+                } // end while
+
+            } // end if num_rows
+
+        }
+        return $data;
+    }
+
+    function getAllPhoneAsTable($id)
+    {
+        $data = $this->getAllPhone($id);
+        if (count($data) > 0)
+        {
+            echo "<h1>" . count($data) .  " Records Found!</h1>";
+            $bigString = "<table border='1'>\n
+                            <tr>
+                                <th>Phone ID</th>
+                                <th>Phone Type</th>
+                                <th>Phone Number</th>
+                                <th>Area Code</th>
+                            </tr>";
+
+                            foreach ($data as $row)
+                            {
+                                $bigString .= "<tr>
+                                    <td>{$row['id']}</td>
+                                    <td>{$row['type']}</td>
+                                    <td>{$row['phonenumber']}</td>
+                                    <td>{$row['areacode']}</td>                                    
+                                    </tr>\n";
+                            }
+
+            $bigString .= "</table>";
+        }
+        else 
+        {
+            $bigString = "<h2>Error: Selected Person does not have a Phone Number!</h2>";
+        }
+        return $bigString;
+    }
+
+
 
     function insert($last, $first, $nick)
     {

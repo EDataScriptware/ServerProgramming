@@ -8,7 +8,7 @@
             try
             {
                 $this->dbh = new PDO("mysql:host={$_SERVER['DB_SERVER']};dbname={$_SERVER['DB']}", 
-                $_SERVER['DB'], $_SERVER['DB_SERVER']);
+                $_SERVER['DB_USER'], $_SERVER['DB_PASSWORD']);
             }
             catch (PDOException $pe)
             {
