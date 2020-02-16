@@ -5,7 +5,7 @@ class DB
 
     function __construct()
     {
-        $this->conn = new mysqli($_SERVER['DB_SERVER'],
+        /*$this->conn = new mysqli($_SERVER['DB_SERVER'],
                                     $_SERVER['DB_USER'],
                                     $_SERVER['DB_PASSWORD'],
                                     $_SERVER['DB']);
@@ -15,7 +15,17 @@ class DB
             echo "Connection Failed: " . mysqli_connect_error();
             die();
         } 
-        
+        */
+
+        try{
+            $this->dbh = new PDO("mysql:host={$_SERVER['DB_SERVER']};
+            dbname={$_SERVER['DB']}", 
+            $_SERVER['DB_USER'], 
+            $_SERVER['DB_PASSWORD']);
+        }
+        catch(PDOException $e){
+            die("Connection Failed: " . mysqli_connect_error());
+        }
     
     } // constructor
 
@@ -23,26 +33,54 @@ class DB
     {
         $data = array(); // or []
 
-        if ($stmt = $this->conn->prepare("SELECT * FROM people"))
+        if ($stmt = $this->dbh->prepare("SELECT * FROM people"))
         {
             $stmt->execute();
-            $stmt->store_result();
-            $stmt->bind_result($id, $last, $first, $nick);
-            $records = $stmt->num_rows;
-            
-            if ($records > 0)
+            $stmt->setfetchMode(PDO::FETCH_CLASS, "Person");
+            while ($person = $stmt->fetch())
             {
-                while ($stmt->fetch())
-                {
-                    $data[] = array('id'=>$id,'first'=>$first,'last'=>$last,'nick'=>$nick);
-                } // end while
-
-            } // end if num_rows
+                $data[] = $person;
+            }
 
 
         } // end stmt
 
         return $data;
+    }
+    
+    function getPeopleAlt($id) {
+        try {
+            $data = array();
+            $stmt = $this->dbh->prepare("select * from people where PersonID = :id");
+
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+            while($row = $stmt->fetch()) {
+                $data[] = $row;
+            }
+            return $data;
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    function getPeopleAlt2($id) {
+        try {
+            $data = array();
+            $stmt = $this->dbh->prepare("select * from people where PersonID = :id");
+
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $data = $stmt->fetchAll();
+            return $data;
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
     }
 
     function getAllPeopleAsTable()
@@ -62,10 +100,10 @@ class DB
                             foreach ($data as $row)
                             {
                                 $bigString .= "<tr>
-                                    <td><a href='Lab4_2.php?id={$row['id']}'>{$row['id']}</a></td>
-                                    <td>{$row['first']}</td>
-                                    <td>{$row['last']}</td>
-                                    <td>{$row['nick']}</td>                                    
+                                    <td><a href='Lab4_4.php?id={$row[0]}'>{$row[0]}</a></td>
+                                    <td>{$row[1]}</td>
+                                    <td>{$row[2]}</td>
+                                    <td>{$row[3]}</td>                                    
                                     </tr>\n";
                             }
 
@@ -83,21 +121,18 @@ class DB
     {
         $data = array();
 
-        if($stmt = $this->conn->prepare("SELECT * FROM phonenumbers WHERE PersonID= " . $id . ";"));
+        $stmt = $this->dbh->prepare("SELECT * FROM phonenumbers WHERE PersonID = :id");
         {
-            $stmt->execute();
-            $stmt->store_result();
-            $stmt->bind_result($id, $type, $phoneNumber, $areaCode);
-            $numRows = $stmt->num_rows;
+            $stmt->execute(['id'=>$id]);
+            
+            $stmt->setFetchMode(PDO::FETCH_CLASS, "PhoneNumbers");
 
-            if ($numRows > 0)
-            {
-                while ($stmt->fetch())
-                {
-                    $data[] = array('id'=>$id,'type'=>$type,'phonenumber'=>$phoneNumber,'areacode'=>$areaCode);
-                } // end while
+            
+            // $numRows = $stmt->num_rows;
 
-            } // end if num_rows
+            while($phonenumbers = $stmt->fetch()){
+                $data[] = $phonenumbers;
+            }
 
         }
         return $data;
@@ -120,10 +155,10 @@ class DB
                             foreach ($data as $row)
                             {
                                 $bigString .= "<tr>
-                                    <td>{$row['id']}</td>
-                                    <td>{$row['type']}</td>
-                                    <td>{$row['phonenumber']}</td>
-                                    <td>{$row['areacode']}</td>                                    
+                                    <td>{$row[0]}</td>
+                                    <td>{$row[1]}</td>
+                                    <td>{$row[2]}</td>
+                                    <td>{$row[3]}</td>                                    
                                     </tr>\n";
                             }
 
