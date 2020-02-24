@@ -1,4 +1,5 @@
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.net.URL;
 
 import javax.json.*;
@@ -30,6 +31,54 @@ public class JSONExample
             
          }
          System.out.println("Done...!");
+
+         is = url.openStream();
+         JsonParser parser = Json.createParser(is);
+
+         while (parser.hasNext() )
+         {
+            Event e = parser.next();
+            if (e == Event.KEY_NAME)
+            {
+               switch (parser.getString() )
+               {
+                  case "parkName":
+                     parser.next();
+                     System.out.print(parser.getString() + ": ");
+                  break;
+                  case "parkLocation":
+                     parser.next();
+                     System.out.println(parser.getString());
+                  break;
+                  default: 
+
+                  break;
+
+               }
+            }
+         } // end while loop
+
+         StringWriter swriter = new StringWriter();
+         try (JsonGenerator gen = Json.createGenerator(swriter))
+         {
+            gen.writeStartObject();
+            gen.writeStartArray("parks");
+
+            for (int i=0; i<4; i++)
+            {
+               gen.writeStartObject()
+               .write("parkName", "Park " + (i+1))
+               .write("parkLocation", "Location " + (i+1))
+               .writeEnd(); // string
+
+            }
+            gen.writeEnd(); // array
+            gen.writeEnd(); // object
+         }
+         
+         System.out.println(swriter.toString());
+         
+
       }
       catch (Exception e)
       {
