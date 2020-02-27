@@ -17,62 +17,6 @@ echo "<p>Role:  <select id='register_role' name='register_role'>
 echo "<input type='submit' name='submitName' value='Register'>";
 echo "</form>";
 
-echo "<p>";
-if (isset($_GET['register_name']))
-{
-    if ($_GET['register_name'] == "")
-    {
-        echo "Please enter a valid username.";
-    }
-    else 
-    {
-        echo $_GET['register_name'];
-    }
-}
-
-echo "</p>";
-
-echo "<p>";
-
-if (isset($_GET['register_password']))
-{
-    if ($_GET['register_password'] == "")
-    {
-        echo "Please enter a valid password.";
-    }
-    else 
-    {
-        echo $_GET['register_password'];
-    }
-}
-echo "</p>";
-
-echo "<p>";
-
-if (isset($_GET['verification_register_password']))
-{
-    if ($_GET['verification_register_password'] == "")
-    {
-        echo "Please enter a verification password.";
-    }
-    else if ($_GET['verification_register_password'] != $_GET['register_password']) 
-    {
-        echo "Passwords do not match!";
-    }
-    else 
-    {
-        echo $_GET['verification_register_password'];
-    }
-}
-echo "</p>";
-echo "<p>";
-
-if (isset($_GET['register_role']))
-{
-        echo $_GET['register_role'];
-}
-echo "</p>";
-
 if (isset($_POST['submitName']))
 {
     // role to numbers
