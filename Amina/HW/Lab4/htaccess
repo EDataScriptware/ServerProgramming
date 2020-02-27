@@ -1,0 +1,5 @@
+SetEnv DB axm6392
+SetEnv DB_SERVER localhost 
+# SetEnv DB_PASSWORD yourpassword from .mycyf
+SetEnv DB_USER axm6392
+# put in main .htaccess file of you want to effect whole site

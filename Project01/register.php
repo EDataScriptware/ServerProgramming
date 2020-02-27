@@ -1,5 +1,5 @@
 <?php 
-require_once("verification.class.php");
+require_once("class/registeration.class.php");
 $db = new DB();
 $db->establishConnection();
 
@@ -11,6 +11,8 @@ echo "<p> Password: <input type='password' id='register_password' name='register
 echo "<p> Password Verification: <input type='password' id='verification_register_password' name='verification_register_password'></p>";
 echo "<input type='submit' value='Register'>";
 echo "</form>";
+
+
 
 
 

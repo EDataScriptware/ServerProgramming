@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<web-app>
+    	<servlet>
+        	<display-name>MahmoodAP2</display-name>
+	        	<servlet-name>MahmoodAP2.ApplicationConfig</servlet-name>
+        	<init-param>
+            		<param-name>javax.ws.rs.ApplicationConfig</param-name>
+            		<param-value>MahmoodAP2.ApplicationConfig</param-value>
+        	</init-param>
+ 	   </servlet>
+	</web-app>

@@ -1,5 +1,5 @@
 <?php 
-require_once "verification.class.php";
+require_once("class/registeration.class.php");
 
 echo "<h1>Login Page</h1>";
 echo "<form>";
