@@ -1,6 +1,8 @@
 <?php 
 require_once("class/registeration.class.php");
-$db = new DB();
+require_once("class/login.class.php");
+$db_register = new DBR();
+$db_login = new DBL();
 $db->establishConnection();
 
 
@@ -64,13 +66,20 @@ if (isset($_POST['submitName']))
             }
             else 
             {
-                try 
-                {    
-                    $db->insertRow($_POST['register_name'], $_POST['register_password'], $role);
-                }
-                catch (Exception $e)
+                if ($db_register->checkAccountExists($_POST['register_name']) == true)
                 {
-                    echo "<p> $e </p>";
+                    echo "Account already exists!";
+                }
+                else 
+                {
+                    try 
+                    {    
+                        $db_register->insertRow($_POST['register_name'], $_POST['register_password'], $role);
+                    }
+                    catch (Exception $e)
+                    {
+                        echo "<p> $e </p>";
+                    }
                 }
             } // end insertRow
         } // end is null

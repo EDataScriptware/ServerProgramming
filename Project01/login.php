@@ -1,7 +1,7 @@
 <?php 
 require_once("class/registeration.class.php");
-$db = new DB();
-$db->establishConnection();
+$db_login = new DBL();
+$db_login->establishConnection();
 
 echo "<h1>Login Page</h1>";
 echo "<form method='POST'>";
@@ -31,7 +31,7 @@ if (isset($_POST['submit']))
         }
         else 
         {
-            $db->logIn($_POST['login_name'], $_POST['login_password']);
+            $db_login->logIn($_POST['login_name'], $_POST['login_password']);
         }
     }
     

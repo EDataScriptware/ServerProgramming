@@ -1,5 +1,5 @@
 <?php 
-class DB 
+class DBR
 {
     private $conn;
 
@@ -40,26 +40,27 @@ class DB
         header("Location: login.php");
     }
 
-    function logIn($user, $password)
+    
+
+    function checkAccountExists($user)
     {
-        $this->establishConnection();
+        
+            $this->establishConnection();
 
-        $sql = "SELECT * FROM attendee WHERE name='$user' AND password='$password'";
-        $result = mysqli_query($this->conn, $sql);
+            $sql = "SELECT * FROM attendee WHERE name='$user'";
+            $result = mysqli_query($this->conn, $sql);
 
 
-        if (mysqli_num_rows($result) > 0) 
-        {
-            echo "<p> $sql </p>";
-            echo "Account does exist!";
-            echo "<p> $result </p>";
-        }
-        else 
-        {
-            echo "Account does not exist.";
-        }
-          
-
+            if (mysqli_num_rows($result) >= 1)
+            {
+                // acconut exists
+                return true;
+            }
+            else 
+            {
+                // account does not exists
+                return false;
+            }
     }
 
 }
