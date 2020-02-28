@@ -19,28 +19,47 @@ class DB
             die();
         } 
         
-    
-    } // constructor
 
-    function insertRow($name, $password, $role)
+    } // establish connection
+
+    function insertRow($user, $password, $role)
     {
         
         $this->establishConnection();
 
         $stmt = $this->conn->prepare("INSERT INTO attendee (name, password, role) VALUES (?, ?, ?)");
-        $stmt->bind_param("ssi", $name, $password, $role);
+        $stmt->bind_param("ssi", $user, $password, $role);
 
         $stmt->execute();
       
-        echo "New records created successfully";
+        echo "Account created!";
 
         $stmt->close();
-        $this->conn->close();    
+        $this->conn->close();  
+        
+        header("Location: login.php");
     }
 
-    function checkLogin()
+    function logIn($user, $password)
     {
-        
+        $this->establishConnection();
+
+        $sql = "SELECT * FROM attendee WHERE name='$user' AND password='$password'";
+        $result = mysqli_query($this->conn, $sql);
+
+
+        if (mysqli_num_rows($result) > 0) 
+        {
+            echo "<p> $sql </p>";
+            echo "Account does exist!";
+            echo "<p> $result </p>";
+        }
+        else 
+        {
+            echo "Account does not exist.";
+        }
+          
+
     }
 
 }
