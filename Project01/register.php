@@ -5,6 +5,7 @@ $db_register = new DBR();
 $db_login = new DBL();
 $db->establishConnection();
 
+echo "<title>Register</title>";
 
 echo "<h1>Registration Page</h1>";
 echo "<form method='POST'>";

@@ -31,12 +31,23 @@ function logIn($user, $password)
 
         if (mysqli_num_rows($result) == 1)
         {
-            echo "<p> $sql </p>";
-            echo "Account does exist!";
+            // echo "<p> $sql </p>";
+            // echo "Account does exist!";
+            $sql = "SELECT role FROM attendee WHERE name='$user' AND password='$password'";
+
+            $result = mysqli_query($this->conn, $sql);
+            $row = mysqli_fetch_row($result);
+
+            $_SESSION['user'] = $user;
+            $_SESSION['role'] = $row[0];
+            
+            // echo $row[0];
+
+            header("Location: events.php");
         }
         else 
         {
-            echo "Account does not exist.";
+            echo "Login Error!";
         }
           
 

@@ -3,6 +3,10 @@ require_once("class/login.class.php");
 $db_login = new DBL();
 $db_login->establishConnection();
 
+session_start();
+
+echo "<title>Login</title>";
+
 echo "<h1>Login Page</h1>";
 echo "<form method='POST'>";
 echo "<p>Username: <input type='text' id='login_name' name='login_name'></p>";
@@ -36,8 +40,4 @@ if (isset($_POST['submit']))
     }
     
 }
-
-
-
-
 ?>
