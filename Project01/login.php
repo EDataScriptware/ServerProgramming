@@ -1,5 +1,5 @@
 <?php 
-require_once("class/registeration.class.php");
+require_once("class/login.class.php");
 $db_login = new DBL();
 $db_login->establishConnection();
 
