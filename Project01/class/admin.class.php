@@ -34,15 +34,19 @@ private $conn;
         while ($row < $numberOfRows)
         {
             $userID = $rows[$row][0];
-            $roleID = $rows[$row][3];
-
-            switch ($roleID)
-            {
-                
-            }
+            $username = $rows[$row][1];
            
-                echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $rows[$row][1] . "</p><p>Role: " . $rows[$row][3] . "</p>";
+                echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $rows[$row][3] . "</p>";
                 // $this->getAllUserSessions($userID);
+                
+                echo "<form method='POST'> <button type='submit' name='$userID' value='$userID' >DELETE $username ?</button></form>";
+
+                if (isset($_POST[$userID]))
+                {
+                    $sql = "DELETE FROM attendee WHERE idattendee = '$userID'";
+                    $result = mysqli_query($this->conn, $sql);
+                    header("location: adminControls.php");
+                }
                 $row += 1;
                 echo "<hr>";
 
@@ -158,7 +162,7 @@ private $conn;
 
 
             echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
-                . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName;
+                . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p><hr>";
             
             $row += 1;
 
