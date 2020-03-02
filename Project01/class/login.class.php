@@ -33,13 +33,14 @@ function logIn($user, $password)
         {
             // echo "<p> $sql </p>";
             // echo "Account does exist!";
-            $sql = "SELECT role FROM attendee WHERE name='$user' AND password='$password'";
+            $sql = "SELECT role, idattendee FROM attendee WHERE name='$user' AND password='$password'";
 
             $result = mysqli_query($this->conn, $sql);
             $row = mysqli_fetch_row($result);
 
             $_SESSION['user'] = $user;
             $_SESSION['role'] = $row[0];
+            $_SESSION['userID'] = $row[1];
             
             // echo $row[0];
 
