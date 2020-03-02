@@ -3,7 +3,7 @@ require_once("class/registeration.class.php");
 require_once("class/login.class.php");
 $db_register = new DBR();
 $db_login = new DBL();
-$db->establishConnection();
+$db_register->establishConnection();
 
 echo "<title>Register</title>";
 
@@ -75,7 +75,8 @@ if (isset($_POST['submitName']))
                 {
                     try 
                     {    
-                        $db_register->insertRow($_POST['register_name'], $_POST['register_password'], $role);
+                        $password = hash("sha256", $_POST['register_password']);
+                        $db_register->insertRow($_POST['register_name'], $password, $role);
                     }
                     catch (Exception $e)
                     {

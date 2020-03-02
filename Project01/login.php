@@ -35,7 +35,8 @@ if (isset($_POST['submit']))
         }
         else 
         {
-            $db_login->logIn($_POST['login_name'], $_POST['login_password']);
+            $password = hash("sha256", $_POST['login_password']);
+            $db_login->logIn($_POST['login_name'], $password);
         }
     }
     
