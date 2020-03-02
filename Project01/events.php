@@ -18,14 +18,16 @@ switch ($role)
     case 1:
         echo "<p><a href='adminControls.php'>Admin Control Panel</a></p>";
         echo "<p><a href='eventManager.php'>Manager Control Panel</a></p>";
+        echo "<p><a href='attendeeManager.php'>Attendee Control Panel</a></p>";
     break;
 
     case 2:
         echo "<p><a href='eventManager.php'>Manager Control Panel</a></p>";
+        echo "<p><a href='attendeeManager.php'>Attendee Control Panel</a></p>";
     break;
 
     case 3: 
-        // nothing happens - role attendee
+        echo "<p><a href='attendeeManager.php'>Attendee Control Panel</a></p>";
     break;
 
     default: 
@@ -35,6 +37,9 @@ switch ($role)
 }
 echo "<h3>My Events!</h3>";
 $events->getAllEventsUnderSpecificUser($userID);
+
+echo "<h3>My Sessions!</h3>";
+$events->getAllSessionsUnderSpecificUser($userID);
 
 
 
