@@ -5,8 +5,8 @@ $events->establishConnection();
 
 session_start();
 
-echo "<title>Event and Sessions</title>";
-echo "<h1>Events and Sessions Page</h1>";
+echo "<title>Home Page</title>";
+echo "<h1>Home Page</h1>";
 
 $username = $_SESSION['user'];
 $userID = $_SESSION['userID'];
