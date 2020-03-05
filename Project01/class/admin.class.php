@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 class Admin {
 private $conn;
 
@@ -35,17 +37,28 @@ private $conn;
         {
             $userID = $rows[$row][0];
             $username = $rows[$row][1];
+            $role = $rows[$row][3];
            
-                echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $rows[$row][3] . "</p>";
+                echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $role . "</p>";
                 // $this->getAllUserSessions($userID);
                 
-                echo "<form method='POST'> <button type='submit' name='$userID' value='$userID' >DELETE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='delete$userID' value='$userID' >DELETE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update$userID' value='$userID' >UPDATE $username ?</button></form>";
 
-                if (isset($_POST[$userID]))
+                if (isset($_POST["delete".$userID]))
                 {
                     $sql = "DELETE FROM attendee WHERE idattendee = '$userID'";
                     $result = mysqli_query($this->conn, $sql);
                     header("location: adminControls.php");
+                }
+
+                if (isset($_POST["update".$userID]))
+                {
+                    $_SESSION['userID_pass'] = $userID;
+                    $_SESSION['username_pass'] = $username;
+                    $_SESSION['role_pass'] = $role;
+                    header("location:  subfiles/updateUserAdminControls.php");
+                  
                 }
                 $row += 1;
                 echo "<hr>";
