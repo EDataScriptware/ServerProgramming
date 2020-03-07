@@ -12,11 +12,13 @@ s#i0
 s#k0
 s#j0
 s#l0
-!88;g
+!122;g
+%\011area%sApplicationConfig.java
 %\011business%sBusinessLayer.java
 %\011area%sAreaCalculator.java
 %\011area%sCircle.java
-!88;f
+!122;f
+%\011area%sApplicationConfig.java
 %\011business%sBusinessLayer.java
 %\011area%sAreaCalculator.java
 %\011area%sCircle.java
