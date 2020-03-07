@@ -2,7 +2,6 @@
 class Events
 {
 
-    private $conn; 
     
     function establishConnection()
     {

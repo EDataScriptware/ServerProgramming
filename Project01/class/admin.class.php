@@ -47,8 +47,7 @@ private $conn;
 
                 if (isset($_POST["delete".$userID]))
                 {
-                    $sql = "DELETE FROM attendee WHERE idattendee = '$userID'";
-                    $result = mysqli_query($this->conn, $sql);
+                    $this->deleteUserAccount($userID);
                     header("location: adminControls.php");
                 }
 
@@ -64,6 +63,22 @@ private $conn;
                 echo "<hr>";
 
         }
+    }
+
+    function deleteUserAccount($userID)
+    {
+        $sql = "DELETE FROM attendee WHERE idattendee = '$userID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
+
+    function updateUserAccount($userID, $username, $role)
+    {
+       
+        $sql = "UPDATE attendee SET name=\"$username\", role=$role WHERE idattendee=$userID";
+        echo $sql;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
     }
 
 
