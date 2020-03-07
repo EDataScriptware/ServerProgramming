@@ -31,7 +31,13 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Users</h2><hr>";
+        echo "<h2>All Users</h2>";
+        echo "<form method='POST'> <button type='submit' name='createUser' value='createUser'>CREATE NEW USER</button></form><hr>";
+        
+        if (isset($_POST["createUser"]))
+        {
+            header("location: subfiles/createUserAdminControls.php");
+        }
 
         while ($row < $numberOfRows)
         {
@@ -56,7 +62,7 @@ private $conn;
                     $_SESSION['userID_pass'] = $userID;
                     $_SESSION['username_pass'] = $username;
                     $_SESSION['role_pass'] = $role;
-                    header("location:  subfiles/updateUserAdminControls.php");
+                    header("location: subfiles/updateUserAdminControls.php");
                   
                 }
                 $row += 1;

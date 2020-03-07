@@ -37,7 +37,23 @@ class DBR
         $stmt->close();
         $this->conn->close();  
         
-        header("Location: login.php");
+    }
+
+    function insertAdminRow($user, $password, $role, $userID)
+    {
+        
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO attendee (idattendee, name, password, role) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("issi", $userID, $user, $password, $role);
+
+        $stmt->execute();
+      
+        echo "Account created!";
+
+        $stmt->close();
+        $this->conn->close();  
+        
     }
 
     
@@ -53,12 +69,33 @@ class DBR
 
             if (mysqli_num_rows($result) >= 1)
             {
-                // acconut exists
+                // account exists
                 return true;
             }
             else 
             {
                 // account does not exists
+                return false;
+            }
+    }
+
+    function checkUserIDExists($user)
+    {
+        
+            $this->establishConnection();
+
+            $sql = "SELECT * FROM attendee WHERE idattendee='$user'";
+            $result = mysqli_query($this->conn, $sql);
+
+
+            if (mysqli_num_rows($result) >= 1)
+            {
+                // userID exists
+                return true;
+            }
+            else 
+            {
+                // userID does not exists
                 return false;
             }
     }
