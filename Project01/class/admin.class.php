@@ -124,7 +124,13 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Venues</h2><hr>";
+        echo "<h2>All Venues</h2>";
+        echo "<form method='POST'> <button type='submit' name='createVenue' value='createVenue'>CREATE NEW VENUE</button></form><hr>";
+        
+        if (isset($_POST["createVenue"]))
+        {
+            header("location: subfiles/createVenueAdminControls.php");
+        }
 
         while ($row < $numberOfRows)
         {
@@ -226,6 +232,66 @@ private $conn;
         {
             echo "Fetch VenueID Error!";
         }
+    }
+
+
+    function checkVenueNameExists($venueName)
+    {
+        
+            $this->establishConnection();
+
+            $sql = "SELECT * FROM venue WHERE name='$venueName'";
+            $result = mysqli_query($this->conn, $sql);
+
+
+            if (mysqli_num_rows($result) >= 1)
+            {
+                // account exists
+                return true;
+            }
+            else 
+            {
+                // account does not exists
+                return false;
+            }
+    }
+
+    function checkVenueIdExists($venueName)
+    {
+        
+        $this->establishConnection();
+
+        $sql = "SELECT * FROM venue WHERE name='$venueName'";
+        $result = mysqli_query($this->conn, $sql);
+
+
+        if (mysqli_num_rows($result) >= 1)
+        {
+            // account exists
+            return true;
+        }
+        else 
+        {
+            // account does not exists
+            return false;
+        }
+    }
+
+    function insertVenueRow($venueID, $venueName, $capacity)
+    {
+        
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO venue (idvenue, name, capacity) VALUES (?, ?, ?)");
+        $stmt->bind_param("ssi", $venueID, $venueName, $capacity);
+
+        $stmt->execute();
+      
+        echo "Account created!";
+
+        $stmt->close();
+        $this->conn->close();  
+        
     }
 }
 ?>

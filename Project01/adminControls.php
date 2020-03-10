@@ -7,8 +7,8 @@ $admin->establishConnection();
 echo "<title>Admininstrator Control Panel</title>";
 echo "<h1>Admin Control Panel</h1>";
 $admin->getAllUsers();
-$admin->getAllSessions();
 $admin->getAllVenues();
+$admin->getAllSessions();
 $admin->getAllEvents();
 
 
