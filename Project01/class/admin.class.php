@@ -78,6 +78,13 @@ private $conn;
         $stmt->execute();    
     }
 
+    function deleteVenue($venueID)
+    {
+        $sql = "DELETE FROM venue WHERE idvenue = '$venueID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
+
     function updateUserAccount($userID, $username, $role)
     {
        
@@ -86,7 +93,14 @@ private $conn;
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();    
     }
-
+    function updateVenue($newVenueID, $newVenueName, $newVenueCapacity)
+    {
+        var_dump($newVenueCapacity);
+        $sql = "UPDATE venue SET name=\"$newVenueName\", capacity=$newVenueCapacity WHERE idvenue=$newVenueID";
+        echo $sql;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
 
     function getAllUserSessions($userID)
     {
@@ -135,8 +149,24 @@ private $conn;
         while ($row < $numberOfRows)
         {
            
-                echo "<p>ID Venue: " . $rows[$row][0] . "</p><p>Venue Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p><hr>";
-            
+                echo "<p>ID Venue: " . $rows[$row][0] . "</p><p>Venue Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p>";
+                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+
+                if (isset($_POST["delete". $rows[$row][0] ]))
+                {
+                    $this->deleteVenue($rows[$row][0]);
+                    header("location: adminControls.php");
+                }
+
+                if (isset($_POST["update".$rows[$row][0]]))
+                {
+                    $_SESSION['venueID_pass'] = $rows[$row][0];
+                    $_SESSION['venuename_pass'] = $rows[$row][1];
+                    $_SESSION['venuecapacity_pass'] = $rows[$row][2];
+                    header("location: subfiles/updateVenueAdminControls.php");
+                  
+                }
             $row += 1;
 
 
