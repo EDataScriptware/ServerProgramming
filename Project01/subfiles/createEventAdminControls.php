@@ -43,11 +43,11 @@ if (isset($_POST['submitEvent']))
                 
                 if  ($db_admin->checkEventIdExists($_POST['id']) == true)
                 {
-                    echo "Event ID already exists!";
+                    echo "Venue ID already exists!";
                 }
                 else if ($db_admin->checkVenueNameExists($_POST['event_name']) == true)
                 {
-                    echo "Event Name already exists!";
+                    echo "Venue Name already exists!";
                 }
                 else 
                 {
