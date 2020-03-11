@@ -48,16 +48,16 @@ private $conn;
                 echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $role . "</p>";
                 // $this->getAllUserSessions($userID);
                 
-                echo "<form method='POST'> <button type='submit' name='delete$userID' value='$userID' >DELETE $username ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update$userID' value='$userID' >UPDATE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='delete$userID user' value='$userID' >DELETE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update$userID user' value='$userID' >UPDATE $username ?</button></form>";
 
-                if (isset($_POST["delete".$userID]))
+                if (isset($_POST["delete".$userID])."user")
                 {
-                    $this->deleteUserAccount($userID);
+                    //$this->deleteUserAccount($userID);
                     header("location: adminControls.php");
                 }
 
-                if (isset($_POST["update".$userID]))
+                if (isset($_POST["update".$userID])."user")
                 {
                     $_SESSION['userID_pass'] = $userID;
                     $_SESSION['username_pass'] = $username;
@@ -167,16 +167,16 @@ private $conn;
         {
            
                 echo "<p>ID Venue: " . $rows[$row][0] . "</p><p>Venue Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p>";
-                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
 
-                if (isset($_POST["delete". $rows[$row][0] ]))
+                if (isset($_POST["delete". $rows[$row][0] ]) . "venue")
                 {
                     $this->deleteVenue($rows[$row][0]);
                     header("location: adminControls.php");
                 }
 
-                if (isset($_POST["update".$rows[$row][0]]))
+                if (isset($_POST["update".$rows[$row][0]])."venue")
                 {
                     $_SESSION['venueID_pass'] = $rows[$row][0];
                     $_SESSION['venuename_pass'] = $rows[$row][1];
@@ -260,8 +260,10 @@ private $conn;
 
 
             echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
-                . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p><hr>";
-            
+                . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p>";
+                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "event' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "event' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+
             $row += 1;
 
 
@@ -288,7 +290,8 @@ private $conn;
         }
         else 
         {
-            echo "Fetch VenueID Error!";
+            // echo "Fetch VenueID Error! - HERE";
+            return "ERROR: Venue Not Found!";
         }
     }
 
