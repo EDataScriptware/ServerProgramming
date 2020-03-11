@@ -3,7 +3,7 @@ require_once("../class/admin.class.php");
 $db_admin = new Admin();
 $db_admin->establishConnection();
 
-echo "<title>Administrator Venue</title>";
+echo "<title>Administrator Register</title>";
 
 echo "<h1>Administrator Venue Page</h1>";
 echo "<form method='POST'>";
@@ -27,6 +27,11 @@ if (isset($_POST['submitVenue']))
     if (!(isset($_POST['capacity'])) || !(isset($_POST['venue_name'])) || !(isset($_POST['id'])))
     {
         echo "Missing information! One or more input is blank!";
+        var_dump($_POST['capacity']);
+        var_dump($_POST['venue_name']);
+        var_dump($_POST['id']);
+        
+
     }
     else 
     {
