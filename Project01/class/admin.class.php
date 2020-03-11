@@ -128,6 +128,23 @@ private $conn;
 
     }
 
+    function getAllSelectedMenuVenues()
+    {
+        $sql = "SELECT * FROM venue";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+    
+        echo '<p>Venue: <select id="event_selectedVenue" name="event_selectedVenue">';
+        while ($row < $numberOfRows)
+        {
+            echo '<option value="'. $rows[$row][0] .'">' . $rows[$row][1] .'</option>';
+
+            $row = $row + 1;
+        }
+        echo '</select></p>';
+    }
 
 
 
@@ -180,7 +197,14 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Sessions</h2><hr>";
+        echo "<h2>All Sessions</h2>";
+        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession'>CREATE NEW SESSION</button></form><hr>";
+        
+        if (isset($_POST["createSession"]))
+        {
+            header("location: subfiles/createSessionAdminControls.php");
+        }
+        
         while ($row < $numberOfRows)
         {
             $eventName = $this->getAssociatedEvent($rows[$row][3]);
@@ -188,8 +212,6 @@ private $conn;
                 . $eventName . "</p><p>Start Date: " . $rows[$row][4] . "</p><p>End Date: " . $rows[$row][5] . "</p><hr>";
             
             $row += 1;
-
-
         }
     }
 
@@ -224,7 +246,13 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Events</h2><hr>";
+        echo "<h2>All Events</h2>";
+        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent'>CREATE NEW EVENT</button></form><hr>";
+        
+        if (isset($_POST["createEvent"]))
+        {
+            header("location: subfiles/createEventAdminControls.php");
+        }
 
         while ($row < $numberOfRows)
         {
@@ -318,6 +346,64 @@ private $conn;
         $stmt->execute();
       
         echo "Account created!";
+
+        $stmt->close();
+        $this->conn->close();  
+        
+    }
+
+    function checkEventNameExists($eventName)
+    {
+        
+            $this->establishConnection();
+
+            $sql = "SELECT * FROM event WHERE name='$eventName'";
+            $result = mysqli_query($this->conn, $sql);
+
+
+            if (mysqli_num_rows($result) >= 1)
+            {
+                // account exists
+                return true;
+            }
+            else 
+            {
+                // account does not exists
+                return false;
+            }
+    }
+
+    function checkEventIdExists($eventID)
+    {
+        
+        $this->establishConnection();
+
+        $sql = "SELECT * FROM event WHERE idevent='$eventID'";
+        $result = mysqli_query($this->conn, $sql);
+
+
+        if (mysqli_num_rows($result) >= 1)
+        {
+            // account exists
+            return true;
+        }
+        else 
+        {
+            // account does not exists
+            return false;
+        }
+    }
+
+    function insertEventRow($eventID, $eventName, $startDatetime, $endDatetime, $capacity, $venueID)
+    {
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO event (idevent, name, datestart, dateend, numberallowed, venue) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssii", $eventID, $eventName, $startDatetime, $endDatetime, $capacity, $venueID);
+
+        $stmt->execute();
+      
+        echo "Event created!";
 
         $stmt->close();
         $this->conn->close();  
