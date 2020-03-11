@@ -36,6 +36,6 @@
         $newVenueCapacity = $_POST["capacity"];
 
         $admin->updateVenue($venueID, $newVenueName, $newVenueCapacity);
-        // header("location: ../adminControls.php");
+        header("location: ../adminControls.php");
     }
 ?>
