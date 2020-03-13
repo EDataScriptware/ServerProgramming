@@ -48,16 +48,19 @@ private $conn;
                 echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $role . "</p>";
                 // $this->getAllUserSessions($userID);
                 
-                echo "<form method='POST'> <button type='submit' name='delete$userID' value='$userID' >DELETE $username ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update$userID' value='$userID' >UPDATE $username ?</button></form>";
+                $deleteUserString = 'delete' . $userID . 'user';
+                $updateUserString = 'update' . $userID . 'user';
+                
+                echo "<form method='POST'> <button type='submit' name='$deleteUserString' value='$userID' >DELETE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateUserString' value='$userID' >UPDATE $username ?</button></form>";
 
-                if (isset($_POST["delete".$userID]))
+                if (isset($_POST["delete".$userID."user"]))
                 {
                     $this->deleteUserAccount($userID);
                     header("location: adminControls.php");
                 }
 
-                if (isset($_POST["update".$userID]))
+                if (isset($_POST["update".$userID."user"]))
                 {
                     $_SESSION['userID_pass'] = $userID;
                     $_SESSION['username_pass'] = $username;
@@ -95,7 +98,6 @@ private $conn;
     }
     function updateVenue($newVenueID, $newVenueName, $newVenueCapacity)
     {
-        var_dump($newVenueCapacity);
         $sql = "UPDATE venue SET name=\"$newVenueName\", capacity=$newVenueCapacity WHERE idvenue=$newVenueID";
         echo $sql;
         $stmt = $this->conn->prepare($sql);
@@ -170,13 +172,13 @@ private $conn;
                 echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
                 echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
 
-                if (isset($_POST["delete". $rows[$row][0] ]) . "venue")
+                if (isset($_POST["delete". $rows[$row][0]."venue"]))
                 {
                     $this->deleteVenue($rows[$row][0]);
                     header("location: adminControls.php");
                 }
 
-                if (isset($_POST["update".$rows[$row][0]])."venue")
+                if (isset($_POST["update".$rows[$row][0]."venue"]))
                 {
                     $_SESSION['venueID_pass'] = $rows[$row][0];
                     $_SESSION['venuename_pass'] = $rows[$row][1];
@@ -258,16 +260,52 @@ private $conn;
         {
             $venueName = $this->getAssociatedVenue($rows[$row][5]);
 
+            $deleteEventString = 'delete' . $rows[$row][0] . 'event';
+            $updateEventString = 'update' . $rows[$row][0] . 'event';
 
-            echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
+                echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
                 . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p>";
-                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+                
+                if (isset($_POST["delete". $rows[$row][0]."event"]))
+                {
+                    $this->deleteEvent($rows[$row][0]);
+                    header("location: adminControls.php");
+                }
 
-            $row += 1;
+                if (isset($_POST["update".$rows[$row][0]."event"]))
+                {
+                    $_SESSION['eventID_pass'] = $rows[$row][0];
+                    $_SESSION['eventname_pass'] = $rows[$row][1];
+                    $_SESSION['eventstart_pass'] = $rows[$row][2];
+                    $_SESSION['eventend_pass'] = $rows[$row][3];
+                    $_SESSION['eventcapacity_pass'] = $rows[$row][4];
+                    $_SESSION['eventvenue_pass'] = $rows[$row][5];
+                    
+                    header("location: subfiles/updateEventAdminControls.php");
+                  
+                }
+                
+                $row += 1;
 
 
         }
+    }
+
+    function deleteEvent($venueID)
+    {
+        $sql = "DELETE FROM event WHERE idevent = '$venueID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
+
+    function updateEvent($newEventID, $newEventName, $newEventStartDate, $newEventEndDate, $newEventCapacity, $newEventVenue)
+    {
+        $sql = "UPDATE event SET name=\"$newEventName\", datestart=\"$newEventStartDate\", dateend=\"$newEventEndDate\", numberallowed=$newEventCapacity, venue=$newEventVenue WHERE idevent=$newEventID";
+        echo $sql;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
     }
 
     function getAssociatedVenue($venueID)
@@ -348,7 +386,7 @@ private $conn;
 
         $stmt->execute();
       
-        echo "Account created!";
+        echo "Venue created!";
 
         $stmt->close();
         $this->conn->close();  

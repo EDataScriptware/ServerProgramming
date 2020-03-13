@@ -34,7 +34,6 @@ if (isset($_POST['submitVenue']))
         if ($_POST['id'] == null || $_POST['venue_name'] == null || $_POST['capacity'] == null)
         {
             echo "Missing information! One or more input is blank!";
-            echo "B";
         }
         else 
         {
