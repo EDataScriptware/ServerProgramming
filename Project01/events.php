@@ -3,14 +3,16 @@ require_once("class/events.class.php");
 $events = new Events();
 $events->establishConnection();
 
-session_start();
-
 echo "<title>Home Page</title>";
 echo "<h1>Home Page</h1>";
 
 $username = $_SESSION['user'];
 $userID = $_SESSION['userID'];
 $role = $_SESSION['role'];
+
+$_SESSION['user'] = $_SESSION['user'];
+$_SESSION['userID'] = $_SESSION['userID'];
+$_SESSION['role'] = $_SESSION['role'];
 
 echo "<h2>Hello $username!</h2>";
 switch ($role)

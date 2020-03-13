@@ -37,8 +37,6 @@ class Events
             $eventName = $this->getEventNames($rows[$row][0]);
             echo "<p>Event #" . ($row + 1). ": " . $eventName . "</p>";
             $row += 1;
-
-
         }
     }
 
@@ -53,6 +51,30 @@ class Events
         while ($row < $numberOfRows)
         {
             return $rows[$row][1];
+            $row += 1;
+        }
+
+    }
+
+    function eventManagerGetEventNames($eventIDs)
+    {
+        $sql = "SELECT * FROM event WHERE idevent = '$eventIDs'";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+
+        while ($row < $numberOfRows)
+        {
+
+            $deleteEventString = 'delete' . $rows[$row][0] . 'event';
+            $updateEventString = 'update' . $rows[$row][0] . 'event';
+            
+            echo "<p>Event #" . ($row + 1). ": " . $rows[$row][1] . "</p>";
+
+            echo "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
+            echo "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+      
             $row += 1;
         }
 
@@ -98,7 +120,28 @@ class Events
 
     }
 
+    function getAllCreatedEvents($managerID)
+    {
+  
+        $sql = "SELECT * FROM manager_event WHERE manager = '$managerID'";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
 
+        while ($row < $numberOfRows)
+        {
+            $this->eventManagerGetEventNames($rows[$row][0]);
+            
+            $row += 1;
+        }
+
+    }
+
+    function getEventManagerCreatedSessions()
+    {
+
+    }
 
 
 
