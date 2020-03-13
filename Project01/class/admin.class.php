@@ -280,12 +280,55 @@ private $conn;
         {
             $eventName = $this->getAssociatedEvent($rows[$row][3]);
             echo "<p>Session ID: " . $rows[$row][0] . "</p><p>Session Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p><p>Associated with Event: " 
-                . $eventName . "</p><p>Start Date: " . $rows[$row][4] . "</p><p>End Date: " . $rows[$row][5] . "</p><hr>";
-            
+                . $eventName . "</p><p>Start Date: " . $rows[$row][4] . "</p><p>End Date: " . $rows[$row][5] . "</p>";
+                
+                $deleteSessionString = 'delete' . $rows[$row][0] . 'session';
+                $updateSessionString = 'update' . $rows[$row][0] . 'session';
+
+                $sessionID = $rows[$row][0];
+                $sessionName = $rows[$row][1];
+                
+                
+                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE $sessionName ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE $sessionName ?</button></form><hr>";
+
+                if (isset($_POST["delete". $rows[$row][0]."session"]))
+                {
+                    $this->deleteSession($rows[$row][0]);
+                    header("location: adminControls.php");
+                }
+
+                if (isset($_POST["update".$rows[$row][0]."session"]))
+                {
+                    $_SESSION['sessionID_pass'] = $rows[$row][0];
+                    $_SESSION['sessionname_pass'] = $rows[$row][1];
+                    $_SESSION['sessioncapacity_pass'] = $rows[$row][2];
+                    $_SESSION['sessionevent_pass'] = $rows[$row][3];
+                    $_SESSION['sessionstart_pass'] = $rows[$row][4];
+                    $_SESSION['sessionend_pass'] = $rows[$row][5];
+                    
+                    header("location: subfiles/updateSessionAdminControls.php");
+                  
+                }
+                
             $row += 1;
         }
     }
 
+    function updateSession($newSessionID, $newSessionName, $newSessionStartDate, $newSessionEndDate, $newSessionCapacity, $newSessionEvent)
+    {
+        $sql = "UPDATE session SET name=\"$newSessionName\", startdate=\"$newSessionStartDate\", enddate=\"$newSessionEndDate\", numberallowed=$newSessionCapacity, event=$newSessionEvent WHERE idsession=$newSessionID";
+        echo $sql;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
+
+    function deleteSession($sessionID)
+    {
+        $sql = "DELETE FROM session WHERE idsession = '$sessionID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
     function getAssociatedEvent($eventID)
     {
         $this->establishConnection();
