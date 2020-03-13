@@ -124,10 +124,61 @@ private $conn;
                 $row = $row + 1;
             }
         }
+    }
+    function checkSessionNameExists($sessionName)
+    {
         
+            $this->establishConnection();
+
+            $sql = "SELECT * FROM session WHERE name='$sessionName'";
+            $result = mysqli_query($this->conn, $sql);
 
 
+            if (mysqli_num_rows($result) >= 1)
+            {
+                // account exists
+                return true;
+            }
+            else 
+            {
+                // account does not exists
+                return false;
+            }
+    }
+    function checkSessionIdExists($sessionID)
+    {
+        $this->establishConnection();
 
+        $sql = "SELECT * FROM session WHERE idsession='$sessionID'";
+        $result = mysqli_query($this->conn, $sql);
+
+
+        if (mysqli_num_rows($result) >= 1)
+        {
+            // session id exists
+            return true;
+        }
+        else 
+        {
+            // session id does not exists
+            return false;
+        }
+    }
+
+    function insertSessionRow($sessionID, $sessionName, $startDatetime, $endDatetime, $capacity, $eventID)
+    {
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO session (idsession, name, numberallowed, event, startdate, enddate) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssiiss", $sessionID, $sessionName, $capacity, $eventID, $startDatetime, $endDatetime);
+
+        $stmt->execute();
+      
+        echo "Session created!";
+
+        $stmt->close();
+        $this->conn->close();  
+        
     }
 
     function getAllSelectedMenuVenues()
@@ -139,6 +190,24 @@ private $conn;
         $numberOfRows = mysqli_num_rows($result);
     
         echo '<p>Venue: <select id="event_selectedVenue" name="event_selectedVenue">';
+        while ($row < $numberOfRows)
+        {
+            echo '<option value="'. $rows[$row][0] .'">' . $rows[$row][1] .'</option>';
+
+            $row = $row + 1;
+        }
+        echo '</select></p>';
+    }
+
+    function getAllSelectedMenuEvent()
+    {
+        $sql = "SELECT * FROM event";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+    
+        echo '<p>Venue: <select id="session_selectedEvent" name="session_selectedEvent">';
         while ($row < $numberOfRows)
         {
             echo '<option value="'. $rows[$row][0] .'">' . $rows[$row][1] .'</option>';

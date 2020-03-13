@@ -8,10 +8,14 @@ echo "<title>Administrator Session</title>";
 echo "<h1>Administrator Session Page</h1>";
 echo "<form method='POST'>";
 echo "<p> Session ID: <input type='text' id='id' name='id'></p>";
-echo "<p> Session Name: <input type='text' id='venue_name' name='venue_name'></p>";
-echo "<p> Capacity: <input type='text' id='capacity' name='capacity'></p>";
+echo "<p> Session Name: <input type='text' id='session_name' name='session_name'></p>";
+echo "<p> Start Date and Time: <input type='date' id='session_startDate' name='session_startDate'><input type='time' id='session_startTime' name='session_startTime'></p>";
+echo "<p> End Date and Time: <input type='date' id='session_endDate' name='session_endDate'><input type='time' id='session_endTime' name='session_endTime'></p>";
+echo "<p> Capacity: <input type='text' id='session_capacity' name='session_capacity'></p>";
 
-echo "<input type='submit' name='submitVenue' value='Create Venue'>";
+$db_admin->getAllSelectedMenuEvent();
+
+echo "<input type='submit' name='submitSession' value='Create Session'>";
 echo "<input type='submit' name='adminControls' value='Back To Admin Page'>";
 echo "</form>";
 
@@ -20,41 +24,40 @@ if (isset($_POST['adminControls']))
     header("location: ../adminControls.php");
 }
 
-if (isset($_POST['submitVenue']))
+if (isset($_POST['submitSession']))
 {
-
-   
-    if (!(isset($_POST['capacity'])) || !(isset($_POST['venue_name'])) || !(isset($_POST['id'])))
+    if ( !(isset($_POST['session_capacity'])) || !(isset($_POST['session_name'])) || !(isset($_POST['id']) || !(isset($_POST['session_startDate'])) || !(isset($_POST['session_startTime'])) || !(isset($_POST['session_endDate'])) || !(isset($_POST['session_endTime'])) || !(isset($_POST['session_selectedEvent'])) ))
     {
         echo "Missing information! One or more input is blank!";
+
 
     }
     else 
     {
 
-        if ($_POST['id'] == null || $_POST['venue_name'] == null || $_POST['capacity'] == null)
+        if ($_POST['id'] == null || $_POST['session_capacity'] == null || $_POST['session_name'] == null || $_POST['session_startDate'] == null || $_POST['session_startTime'] == null || $_POST['session_endTime'] == null || $_POST['session_endDate'] == null || $_POST['session_selectedEvent'] == null)
         {
             echo "Missing information! One or more input is blank!";
-            echo "B";
         }
         else 
         {
                 
-                if  ($db_admin->checkVenueIdExists($_POST['id']) == true)
+                if  ($db_admin->checkSessionIdExists($_POST['id']) == true)
                 {
-                    echo "Venue ID already exists!";
+                    echo "Session ID already exists!";
                 }
-                else if ($db_admin->checkVenueNameExists($_POST['venue_name']) == true)
+                else if ($db_admin->checkSessionNameExists($_POST['session_name']) == true)
                 {
-                    echo "Venue Name already exists!";
+                    echo "Session Name already exists!";
                 }
                 else 
                 {
+                    $startDatetime = $_POST['session_startDate'] . " " . $_POST['session_startTime'];
+                    $endDatetime = $_POST['session_endDate'] . " " . $_POST['session_endTime'];
                     try 
                     {    
-                        $db_admin->insertVenueRow($_POST['id'], $_POST['venue_name'], $_POST['capacity']);
+                        $db_admin->insertSessionRow($_POST['id'], $_POST['session_name'], $startDatetime, $endDatetime, $_POST['session_capacity'], $_POST['session_selectedEvent']);
                         header("Location: ../adminControls.php");
-
                     }
                     catch (Exception $e)
                     {
@@ -64,6 +67,6 @@ if (isset($_POST['submitVenue']))
         } // end is null
     
     } // end isset
+    
 } // end submitName
-
 ?>
