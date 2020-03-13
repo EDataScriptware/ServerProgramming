@@ -48,16 +48,16 @@ private $conn;
                 echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $role . "</p>";
                 // $this->getAllUserSessions($userID);
                 
-                echo "<form method='POST'> <button type='submit' name='delete$userID user' value='$userID' >DELETE $username ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update$userID user' value='$userID' >UPDATE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='delete$userID' value='$userID' >DELETE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update$userID' value='$userID' >UPDATE $username ?</button></form>";
 
-                if (isset($_POST["delete".$userID])."user")
+                if (isset($_POST["delete".$userID]))
                 {
-                    //$this->deleteUserAccount($userID);
+                    $this->deleteUserAccount($userID);
                     header("location: adminControls.php");
                 }
 
-                if (isset($_POST["update".$userID])."user")
+                if (isset($_POST["update".$userID]))
                 {
                     $_SESSION['userID_pass'] = $userID;
                     $_SESSION['username_pass'] = $username;
@@ -261,8 +261,8 @@ private $conn;
 
             echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
                 . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p>";
-                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "event' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "event' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
 
             $row += 1;
 
