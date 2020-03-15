@@ -59,15 +59,6 @@ class Events
     {
         $sql = "SELECT * FROM event WHERE idevent = '$eventIDs'";
         $result = mysqli_query($this->conn, $sql);
-        // $rows = mysqli_fetch_all($result);
-        // $row = 0;
-        // $numberOfRows = mysqli_num_rows($result);
-
-        // while ($row < $numberOfRows)
-        // {
-        //     return $rows[$row][1];
-        //     $row += 1;
-        // }
 
         return $result;
 
@@ -89,7 +80,7 @@ class Events
             // echo "<p>Event #" . ($row + 1) . ": " . $rows[$row][1] . "</p>";
             
             return "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>"
-            . "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+            . "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form>";
 
             
         }
@@ -105,13 +96,22 @@ class Events
 
         for ($row = 0; $row < $numberOfRows; $row++)
         {
-           
             return $rows[$row][1];
-
-            // return "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>"
-            //. "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
         }
+    }
 
+    function eventManagerGetEventNamesSelection($eventIDs)
+    {
+        $sql = "SELECT * FROM event WHERE idevent = '$eventIDs'";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+
+        for ($row = 0; $row < $numberOfRows; $row++)
+        {
+            return $rows[$row][1];
+        }
     }
 
     function getAllSessionsUnderSpecificUser($userID)
@@ -162,11 +162,17 @@ class Events
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
 
-        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent'>CREATE NEW EVENT</button></form><hr>";
+        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent'>CREATE NEW EVENT</button></form>";
+        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession'>CREATE NEW SESSION</button></form><hr>";
 
         if (isset($_POST['createEvent']))
         {
             header("location: subfiles/createEventManagerControls.php");
+        }
+
+        if (isset($_POST['createSession']))
+        {
+            header("location: subfiles/createSessionManagerControls.php");
         }
 
         while ($row < $numberOfRows)
@@ -174,7 +180,7 @@ class Events
             $fullNames = $this->eventManagerGetEventNames($rows[$row][0]);
             $fullButtons = $this->eventManagerGetEventButtons($rows[$row][0]);
 
-            echo "<p>Event #" . ($row + 1) . ": " . $fullNames . "</p>";
+            echo "<h2>Event #" . ($row + 1) . ": " . $fullNames . "</h2>";
             
             echo $fullButtons;
 
@@ -189,15 +195,146 @@ class Events
                 $this->deleteEvent($rows[$row][0]);
                 header("location: eventManager.php");
             }
-
+            $this->getEventManagerCreatedSessions($rows[$row][0]);
+            echo "<hr>";
             $row += 1;
         }
 
     }
 
-    function getEventManagerCreatedSessions()
+    function getEventManagerCreatedSessions($eventID)
     {
+        $sql = "SELECT * FROM session WHERE event = '$eventID'";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+        while ($row < $numberOfRows)
+        {
+                        
+            echo "<p>Session #" . ($row + 1). ": " . $rows[$row][1] . "</p>";
+            $deleteSessionString = 'delete' . $rows[$row][0] . 'session';
+                $updateSessionString = 'update' . $rows[$row][0] . 'session';
 
+                $sessionID = $rows[$row][0];
+                $sessionName = $rows[$row][1];
+                
+                
+                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE $sessionName ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE $sessionName ?</button></form>";
+
+                if (isset($_POST["delete". $rows[$row][0]."session"]))
+                {
+                    $this->deleteSession($rows[$row][0]);
+                    header("location: eventManager.php");
+                }
+
+                if (isset($_POST["update".$rows[$row][0]."session"]))
+                {
+                    $_SESSION['sessionID_pass'] = $rows[$row][0];
+                    $_SESSION['sessionname_pass'] = $rows[$row][1];
+                    $_SESSION['sessioncapacity_pass'] = $rows[$row][2];
+                    $_SESSION['sessionevent_pass'] = $rows[$row][3];
+                    $_SESSION['sessionstart_pass'] = $rows[$row][4];
+                    $_SESSION['sessionend_pass'] = $rows[$row][5];
+                    
+                    header("location: subfiles/updateSessionManagerControls.php");
+                  
+                }
+
+            $row += 1;
+
+        }
+    }
+
+    function updateSession($newSessionID, $newSessionName, $newSessionStartDate, $newSessionEndDate, $newSessionCapacity, $newSessionEvent)
+    {
+        $sql = "UPDATE session SET name=\"$newSessionName\", startdate=\"$newSessionStartDate\", enddate=\"$newSessionEndDate\", numberallowed=$newSessionCapacity, event=$newSessionEvent WHERE idsession=$newSessionID";
+        echo $sql;
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+    }
+    function checkSessionNameExists($sessionName)
+    {
+        
+            $this->establishConnection();
+
+            $sql = "SELECT * FROM session WHERE name='$sessionName'";
+            $result = mysqli_query($this->conn, $sql);
+
+
+            if (mysqli_num_rows($result) >= 1)
+            {
+                // account exists
+                return true;
+            }
+            else 
+            {
+                // account does not exists
+                return false;
+            }
+    }
+
+    function insertSessionRow($sessionName, $startDatetime, $endDatetime, $capacity, $eventID)
+    {
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO session (name, numberallowed, event, startdate, enddate) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("siiss", $sessionName, $capacity, $eventID, $startDatetime, $endDatetime);
+
+        $stmt->execute();
+      
+        echo "Session created!";
+
+        $stmt->close();
+        $this->conn->close();  
+        
+    }
+
+    function getAllSelectedMenuEvent()
+    {
+        $sql = "SELECT * FROM event";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+    
+        echo '<p>Venue: <select id="session_selectedEvent" name="session_selectedEvent">';
+        while ($row < $numberOfRows)
+        {
+            echo '<option value="'. $rows[$row][0] .'">' . $rows[$row][1] .'</option>';
+
+            $row = $row + 1;
+        }
+        echo '</select></p>';
+    }
+
+    function getAllSelectedMenuEventManager($managerID)
+    {
+        $sql = "SELECT * FROM manager_event WHERE manager = '$managerID'";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+        $row = 0;
+        $numberOfRows = mysqli_num_rows($result);
+
+        echo '<p>Event: <select id="session_selectedEvent" name="session_selectedEvent">';
+        while ($row < $numberOfRows)
+        {
+            $fullNames = $this->eventManagerGetEventNamesSelection($rows[$row][0]);
+
+            echo '<option value="'. $rows[$row][0] .'">' . $fullNames .'</option>';
+            
+            $row += 1;
+        }
+        echo '</select></p>';
+
+    }
+
+    function deleteSession($sessionID)
+    {
+        $sql = "DELETE FROM session WHERE idsession = '$sessionID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
     }
 
     function getAllSelectedMenuVenues()
