@@ -3,7 +3,6 @@ session_start();
 
 class Events
 {
-
     
     function establishConnection()
     {
@@ -219,13 +218,21 @@ class Events
         echo '</select></p>';
     }
 
-    function deleteEvent($venueID)
+    function deleteEvent($eventID)
     {
-        $sql = "DELETE FROM event WHERE idevent = '$venueID'";
+        $sql = "DELETE FROM event WHERE idevent = '$eventID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();  
+
+        $this->deleteEventOwnership($eventID);  
+    }
+
+    function deleteEventOwnership($eventID)
+    {
+        $sql = "DELETE FROM manager_event WHERE event = '$eventID'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();    
     }
-
 
     function updateEvent($newEventID, $newEventName, $newEventStartDate, $newEventEndDate, $newEventCapacity, $newEventVenue)
     {
@@ -251,9 +258,32 @@ class Events
         
     }
 
-    function registerEventOwnership()
+    function registerEventOwnership($eventID, $managerID)
     {
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO manager_event (event, manager) VALUES (?, ?)");
+        $stmt->bind_param("ii", $eventID, $managerID);
+
+        $stmt->execute();
+      
+        echo "Event Registered!";
+
+        $stmt->close();
+        $this->conn->close();  
+    }
+
+    function getSpecificIDBasedOnName($eventName)
+    {
+        $this->establishConnection();
+
+        $sql = "SELECT * FROM event WHERE name='$eventName'";
+        $result = mysqli_query($this->conn, $sql);
+        $rows = mysqli_fetch_all($result);
+
+        return $rows[0][0];
         
+
     }
 
     function checkEventNameExists($eventName)

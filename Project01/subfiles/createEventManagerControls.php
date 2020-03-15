@@ -1,5 +1,7 @@
 <?php 
 require_once("../class/events.class.php");
+$managerID = $_SESSION['userID'];
+
 $db_event = new Events();
 $db_event->establishConnection();
 
@@ -52,7 +54,9 @@ if (isset($_POST['submitEvent']))
                     try 
                     {    
                         $db_event->insertEventRow($_POST['event_name'], $startDatetime, $endDatetime, $_POST['event_capacity'], $_POST['event_selectedVenue']);
+                        $eventID = $db_event->getSpecificIDBasedOnName($_POST['event_name']);
                         
+                        $db_event->registerEventOwnership($eventID, $managerID);
                         header("Location: ../eventManager.php");
                     }
                     catch (Exception $e)
