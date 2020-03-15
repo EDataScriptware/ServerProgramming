@@ -79,8 +79,8 @@ class Events
             
             // echo "<p>Event #" . ($row + 1) . ": " . $rows[$row][1] . "</p>";
             
-            return "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>"
-            . "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form>";
+            return "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>"
+            . "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
 
             
         }
@@ -144,7 +144,6 @@ class Events
 
         while ($row < $numberOfRows)
         {
-            echo $rows[$row][4];
             return $rows[$row][1];
             
             $row += 1;
@@ -213,15 +212,15 @@ class Events
         {
                         
             echo "<p>Session #" . ($row + 1). ": " . $rows[$row][1] . "</p>";
-            $deleteSessionString = 'delete' . $rows[$row][0] . 'session';
+                $deleteSessionString = 'delete' . $rows[$row][0] . 'session';
                 $updateSessionString = 'update' . $rows[$row][0] . 'session';
 
                 $sessionID = $rows[$row][0];
                 $sessionName = $rows[$row][1];
                 
                 
-                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE $sessionName ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE $sessionName ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE <strong> $sessionName </strong>?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE <strong> $sessionName </strong>?</button></form>";
 
                 if (isset($_POST["delete". $rows[$row][0]."session"]))
                 {

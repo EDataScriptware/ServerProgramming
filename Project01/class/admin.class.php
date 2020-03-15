@@ -51,8 +51,8 @@ private $conn;
                 $deleteUserString = 'delete' . $userID . 'user';
                 $updateUserString = 'update' . $userID . 'user';
                 
-                echo "<form method='POST'> <button type='submit' name='$deleteUserString' value='$userID' >DELETE $username ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateUserString' value='$userID' >UPDATE $username ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$deleteUserString' value='$userID' >DELETE <strong> $username </strong>?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateUserString' value='$userID' >UPDATE <strong> $username </strong>?</button></form>";
 
                 if (isset($_POST["delete".$userID."user"]))
                 {
@@ -238,8 +238,8 @@ private $conn;
         {
            
                 echo "<p>ID Venue: " . $rows[$row][0] . "</p><p>Venue Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p>";
-                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form><hr>";
 
                 if (isset($_POST["delete". $rows[$row][0]."venue"]))
                 {
@@ -289,8 +289,8 @@ private $conn;
                 $sessionName = $rows[$row][1];
                 
                 
-                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE $sessionName ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE $sessionName ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE <strong> $sessionName </strong>?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE <strong> $sessionName </strong>?</button></form><hr>";
 
                 if (isset($_POST["delete". $rows[$row][0]."session"]))
                 {
@@ -377,8 +377,8 @@ private $conn;
 
                 echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
                 . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p>";
-                echo "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE " . $rows[$row][1] . " ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE " . $rows[$row][1] . " ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form><hr>";
                 
                 if (isset($_POST["delete". $rows[$row][0]."event"]))
                 {
