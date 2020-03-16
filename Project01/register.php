@@ -7,6 +7,10 @@ $db_register->establishConnection();
 
 echo "<title>Register</title>";
 
+echo '<head><style>';
+include 'css/register.css';
+echo '</style></head>';
+
 echo "<h1>Registration Page</h1>";
 echo "<form method='POST'>";
 echo "<p> Username: <input type='text' id='register_name' name='register_name'></p>";
@@ -17,8 +21,8 @@ echo "<p>Role:  <select id='register_role' name='register_role'>
 <option value='eventmanager'>Event Manager</option>
 <option value='attendee'>Attendee</option>
 </select></p>";
-echo "<input type='submit' name='submitName' value='Register'>";
-echo "<input type='submit' name='loginName' value='Back To Login Page'>";
+echo "<input type='submit' name='submitName' value='Register' class='button'>";
+echo "<input type='submit' name='loginName' value='Back To Login Page' class='button'>";
 echo "</form>";
 
 if (isset($_POST['loginName']))
