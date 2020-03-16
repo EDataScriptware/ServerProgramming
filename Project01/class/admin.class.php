@@ -23,7 +23,17 @@ private $conn;
 
     } // establish connection
 
+    function goBackButton()
+    {
+        echo "<form method='POST'> <button type='submit' name='toEventPage' >Back to Events Page?</button></form>";
+                
+        if (isset($_POST['toEventPage']))
+        {
+            header("location: events.php");
+        }
 
+    }
+    
     function getAllUsers()
     {
         $sql = "SELECT * FROM attendee";
@@ -405,9 +415,33 @@ private $conn;
         }
     }
 
-    function deleteEvent($venueID)
+    function registerEventOwnership($eventID, $managerID)
     {
-        $sql = "DELETE FROM event WHERE idevent = '$venueID'";
+        $this->establishConnection();
+
+        $stmt = $this->conn->prepare("INSERT INTO manager_event (event, manager) VALUES (?, ?)");
+        $stmt->bind_param("ii", $eventID, $managerID);
+
+        $stmt->execute();
+      
+        echo "Event Registered!";
+
+        $stmt->close();
+        $this->conn->close();  
+    }
+
+    function deleteEvent($eventID)
+    {
+        $sql = "DELETE FROM event WHERE idevent = '$eventID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
+
+        $this->deleteEventOwnership($eventID);
+    }
+
+    function deleteEventOwnership($eventID)
+    {
+        $sql = "DELETE FROM manager_event WHERE event = '$eventID'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();    
     }
@@ -546,6 +580,8 @@ private $conn;
             return false;
         }
     }
+
+    
 
     function insertEventRow($eventID, $eventName, $startDatetime, $endDatetime, $capacity, $venueID)
     {

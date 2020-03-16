@@ -88,6 +88,17 @@ class Attendee
         }
     }
 
+    function goBackButton()
+    {
+        echo "<form method='POST'> <button type='submit' name='toEventPage' >Back to Events Page?</button></form>";
+                
+        if (isset($_POST['toEventPage']))
+        {
+            header("location: events.php");
+        }
+
+    }
+
     function registerForEvent($eventID, $userID)
     {
         $this->establishConnection();

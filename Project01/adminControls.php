@@ -6,6 +6,7 @@ $admin->establishConnection();
 
 echo "<title>Admininstrator Control Panel</title>";
 echo "<h1>Admin Control Panel</h1>";
+$admin->goBackButton();
 $admin->getAllUsers();
 $admin->getAllVenues();
 $admin->getAllEvents(); 

@@ -57,6 +57,7 @@ if (isset($_POST['submitEvent']))
                         $eventID = $db_event->getSpecificIDBasedOnName($_POST['event_name']);
                         
                         $db_event->registerEventOwnership($eventID, $managerID);
+                        
                         header("Location: ../eventManager.php");
                     }
                     catch (Exception $e)

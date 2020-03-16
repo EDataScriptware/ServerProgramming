@@ -1,5 +1,7 @@
 <?php 
 require_once("../class/admin.class.php");
+$managerID = $_SESSION['userID'];
+
 $db_admin = new Admin();
 $db_admin->establishConnection();
 
@@ -56,7 +58,10 @@ if (isset($_POST['submitEvent']))
                     try 
                     {    
                         $db_admin->insertEventRow($_POST['id'], $_POST['event_name'], $startDatetime, $endDatetime, $_POST['event_capacity'], $_POST['event_selectedVenue']);
+                        $db_admin->registerEventOwnership($_POST['id'], $managerID);
+
                         header("Location: ../adminControls.php");
+
                     }
                     catch (Exception $e)
                     {

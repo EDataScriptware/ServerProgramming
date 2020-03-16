@@ -23,6 +23,18 @@ class Events
 
     } // establish connection
 
+
+    function goBackButton()
+    {
+        echo "<form method='POST'> <button type='submit' name='toEventPage' >Back to Events Page?</button></form>";
+                
+        if (isset($_POST['toEventPage']))
+        {
+            header("location: events.php");
+        }
+
+    }
+    
     function getAllEventsUnderSpecificUser($userID)
     {
         $sql = "SELECT * FROM attendee_event WHERE attendee = '$userID'";
