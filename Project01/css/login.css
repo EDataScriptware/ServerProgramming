@@ -1,0 +1,36 @@
+h1
+{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}
+
+form
+{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}
+
+html 
+{
+    background-color: rgb(234, 232, 238);
+}
+
+.button:hover
+{
+    background-color: black;
+    color: white;   
+}
+
+.button:active
+{
+    background-color: gray;
+    color: white;   
+}
+
+
+.error 
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    text-align: center;
+}
