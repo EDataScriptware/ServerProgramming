@@ -43,7 +43,12 @@ $events->getAllEventsUnderSpecificUser($userID);
 echo "<h3>My Sessions!</h3>";
 $events->getAllSessionsUnderSpecificUser($userID);
 
-
+echo "<form method='POST'> <button type='submit' name='LogOut' >Log Out</button></form>";
+if (isset($_POST['LogOut']))
+{
+    session_destroy();
+    header("location: login.php");
+}
 
 
 

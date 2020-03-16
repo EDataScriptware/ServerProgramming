@@ -8,6 +8,13 @@ $attendee->goBackButton();
 $attendee->getAllSessions($userID);
 $attendee->getAllEvents($userID);
 
+echo "<form method='POST'> <button type='submit' name='LogOut' >Log Out</button></form>";
+if (isset($_POST['LogOut']))
+{
+    session_destroy();
+    header("location: login.php");
+}
+
 
 
 ?>

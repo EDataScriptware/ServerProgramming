@@ -34,7 +34,7 @@ class Events
         }
 
     }
-    
+
     function getAllEventsUnderSpecificUser($userID)
     {
         $sql = "SELECT * FROM attendee_event WHERE attendee = '$userID'";
@@ -47,8 +47,23 @@ class Events
         {
             $eventName = $this->getEventNames($rows[$row][0]);
             echo "<p>Event #" . ($row + 1). ": " . $eventName . "</p>";
+            echo '<form method="POST"> <button type="submit" name="unregister' . $rows[$row][0] . 'event" >Unregister <strong>' .$eventName . '</strong> event?</button></form>';
+            
+            if (isset($_POST['unregister' . $rows[$row][0] . 'event']))
+            {
+                $this->unregisterEvent($rows[$row][0], $userID);
+                header("location: events.php");
+            }
+
             $row += 1;
         }
+    }
+
+    function unregisterEvent($eventID, $attendeeID)
+    {
+        $sql = "DELETE FROM attendee_event WHERE event = '$eventID' AND attendee = '$attendeeID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
     }
 
     function getEventNames($eventIDs)
@@ -61,6 +76,7 @@ class Events
 
         while ($row < $numberOfRows)
         {
+            
             return $rows[$row][1];
             $row += 1;
         }
@@ -140,10 +156,24 @@ class Events
             $sessionName = $this->getSessionNames($rows[$row][0]);
             
             echo "<p>Session #" . ($row + 1). ": " . $sessionName . "</p>";
+            echo '<form method="POST"> <button type="submit" name="unregister' . $rows[$row][0] . 'session" >Unregister <strong>' . $sessionName . '</strong> session?</button></form>';
+            
+            if (isset($_POST['unregister' . $rows[$row][0] . 'session']))
+            {
+                $this->unregisterSession($rows[$row][0], $userID);
+                header("location: events.php");
+            }
 
             $row += 1;
 
         }
+    }
+
+    function unregisterSession($sessionID, $attendeeID)
+    {
+        $sql = "DELETE FROM attendee_session WHERE session = '$sessionID' AND attendee = '$attendeeID'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();    
     }
 
     function getSessionNames($sessionID)

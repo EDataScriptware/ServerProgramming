@@ -12,4 +12,10 @@ echo "<h1>Event Manager Control Panel</h1>";
 $event->goBackButton();
 $event->getAllCreatedEvents($managerID);
 
+echo "<form method='POST'> <button type='submit' name='LogOut' >Log Out</button></form>";
+if (isset($_POST['LogOut']))
+{
+    session_destroy();
+    header("location: login.php");
+}
 ?>
