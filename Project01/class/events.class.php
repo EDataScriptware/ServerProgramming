@@ -26,7 +26,7 @@ class Events
 
     function goBackButton()
     {
-        echo "<form method='POST'> <button type='submit' name='toEventPage' >Back to Events Page?</button></form>";
+        echo "<form method='POST'> <button type='submit' name='toEventPage' class='button' >Back to Events Page?</button></form>";
                 
         if (isset($_POST['toEventPage']))
         {
@@ -46,8 +46,8 @@ class Events
         while ($row < $numberOfRows)
         {
             $eventName = $this->getEventNames($rows[$row][0]);
-            echo "<p>Event #" . ($row + 1). ": " . $eventName . "</p>";
-            echo '<form method="POST"> <button type="submit" name="unregister' . $rows[$row][0] . 'event" >Unregister <strong>' .$eventName . '</strong> event?</button></form>';
+            echo "<p class='row'>Event #" . ($row + 1). ": " . $eventName . "</p>";
+            echo '<form method="POST"> <button type="submit" class="button" name="unregister' . $rows[$row][0] . 'event" >Unregister <strong>' .$eventName . '</strong> event?</button></form>';
             
             if (isset($_POST['unregister' . $rows[$row][0] . 'event']))
             {
@@ -107,8 +107,8 @@ class Events
             
             // echo "<p>Event #" . ($row + 1) . ": " . $rows[$row][1] . "</p>";
             
-            return "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>"
-            . "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+            return "<form method='POST' > <button type='submit' class='button' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>"
+            . "<form method='POST'> <button type='submit' class='button' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
 
             
         }
@@ -155,8 +155,8 @@ class Events
 
             $sessionName = $this->getSessionNames($rows[$row][0]);
             
-            echo "<p>Session #" . ($row + 1). ": " . $sessionName . "</p>";
-            echo '<form method="POST"> <button type="submit" name="unregister' . $rows[$row][0] . 'session" >Unregister <strong>' . $sessionName . '</strong> session?</button></form>';
+            echo "<p class='row'>Session #" . ($row + 1). ": " . $sessionName . "</p>";
+            echo '<form method="POST"> <button type="submit" name="unregister' . $rows[$row][0] . 'session" class="button">Unregister <strong>' . $sessionName . '</strong> session?</button></form>';
             
             if (isset($_POST['unregister' . $rows[$row][0] . 'session']))
             {
@@ -203,8 +203,8 @@ class Events
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
 
-        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent'>CREATE NEW EVENT</button></form>";
-        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession'>CREATE NEW SESSION</button></form><hr>";
+        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent' class='button'>CREATE NEW EVENT</button></form>";
+        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession' class='button'>CREATE NEW SESSION</button></form><hr>";
 
         if (isset($_POST['createEvent']))
         {
@@ -261,8 +261,8 @@ class Events
                 $sessionName = $rows[$row][1];
                 
                 
-                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE <strong> $sessionName </strong>?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE <strong> $sessionName </strong>?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' class='button' >DELETE <strong> $sessionName </strong>?</button></form>";
+                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' class='button'>UPDATE <strong> $sessionName </strong>?</button></form>";
 
                 if (isset($_POST["delete". $rows[$row][0]."session"]))
                 {

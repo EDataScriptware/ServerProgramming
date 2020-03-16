@@ -1,0 +1,61 @@
+h1, h2, h3, a, .row
+{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    
+}
+
+html 
+{
+    background-color: rgb(234, 232, 238);
+    text-align: center;
+}
+
+.inline
+{
+    display: inline;
+    margin: 1px;
+    text-align: center;
+    border: 1px black solid;
+    background-color: white;
+
+}
+
+.inline:hover
+{
+    background-color: black;
+}
+
+.inline:active
+{
+    background-color: white;
+}
+
+a
+{
+    color: black;
+    text-align: center;
+    padding: 1.1em;
+}
+
+.button:hover
+{
+    background-color: black;
+    color: white;   
+}
+
+.button:active
+{
+    background-color: gray;
+    color: white;   
+}
+
+
+a:hover
+{
+    color: grey;
+}
+a:active
+{
+    color: black;
+}
