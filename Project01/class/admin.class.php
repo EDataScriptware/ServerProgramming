@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 class Admin {
 private $conn;
@@ -265,8 +266,8 @@ private $conn;
            
                 echo "<div class='box'>";
                 echo "<p><b>ID Venue:</b> " . $rows[$row][0] . "</p><p><b>Venue Name:</b> " . $rows[$row][1] . "</p><p><b>Capacity:</b> " . $rows[$row][2] . "</p>";
-                echo "<form method='POST' class='inline'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' class='button' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
-                echo "<form method='POST' class='inline'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' class='button' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' class='button'>DELETE <strong>" . $rows[$row][1] . "</strong>?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' class='button'>UPDATE <strong>" . $rows[$row][1] . "</strong>?</button></form>";
                 echo "</div>";
 
                 if (isset($_POST["delete". $rows[$row][0]."venue"]))

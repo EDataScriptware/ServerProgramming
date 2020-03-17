@@ -1,12 +1,17 @@
 <?php 
 require_once("../class/registeration.class.php");
 require_once("../class/login.class.php");
+
 $db_register = new DBR();
 $db_login = new DBL();
 $db_register->establishConnection();
 
-
 echo "<title>Administrator Register</title>";
+
+echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
+
 
 echo "<h1>Administrator Registration Page</h1>";
 echo "<form method='POST'>";
@@ -19,8 +24,8 @@ echo "<p>Role:  <select id='register_role' name='register_role'>
 <option value='eventmanager'>Event Manager</option>
 <option value='attendee'>Attendee</option>
 </select></p>";
-echo "<input type='submit' name='submitName' value='Register'>";
-echo "<input type='submit' name='adminControls' value='Back To Admin Page'>";
+echo "<input type='submit' name='submitName' class='button' value='Register'>";
+echo "<input type='submit' name='adminControls' class='button' value='Back To Admin Page'>";
 echo "</form>";
 
 if (isset($_POST['adminControls']))

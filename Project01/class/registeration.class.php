@@ -1,4 +1,6 @@
-<?php 
+<?php
+ob_start();
+
 class DBR
 {
     private $conn;

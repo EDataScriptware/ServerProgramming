@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <?php 
 require_once("class/login.class.php");
 
@@ -51,4 +49,3 @@ if (isset($_POST['submit']))
     
 }
 ?>
-</html>

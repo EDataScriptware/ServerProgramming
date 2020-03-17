@@ -1,4 +1,6 @@
 <?php 
+ob_start();
+
 class DBL 
 {
     function establishConnection()

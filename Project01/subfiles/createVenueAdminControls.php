@@ -3,6 +3,10 @@ require_once("../class/admin.class.php");
 $db_admin = new Admin();
 $db_admin->establishConnection();
 
+echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
+
 echo "<title>Administrator Venue</title>";
 
 echo "<h1>Administrator Venue Page</h1>";
@@ -11,8 +15,8 @@ echo "<p> Venue ID: <input type='text' id='id' name='id'></p>";
 echo "<p> Venue Name: <input type='text' id='venue_name' name='venue_name'></p>";
 echo "<p> Capacity: <input type='text' id='capacity' name='capacity'></p>";
 
-echo "<input type='submit' name='submitVenue' value='Create Venue'>";
-echo "<input type='submit' name='adminControls' value='Back To Admin Page'>";
+echo "<input type='submit' name='submitVenue' class='button' value='Create Venue'>";
+echo "<input type='submit' name='adminControls' class='button' value='Back To Admin Page'>";
 echo "</form>";
 
 if (isset($_POST['adminControls']))
