@@ -46,7 +46,7 @@ class Events
         while ($row < $numberOfRows)
         {
             $eventName = $this->getEventNames($rows[$row][0]);
-            echo "<p>Event #" . ($row + 1). ": " . $eventName . "</p>";
+            echo "<p class='row'>Event #" . ($row + 1). ": " . $eventName . "</p>";
             echo '<form method="POST"> <button type="submit" class="button" name="unregister' . $rows[$row][0] . 'event" >Unregister <strong>' .$eventName . '</strong> event?</button></form>';
             echo "</p>";
             if (isset($_POST['unregister' . $rows[$row][0] . 'event']))

@@ -4,11 +4,18 @@ $attendee = new Attendee();
 $attendee->establishConnection();
 $userID = $_SESSION['userID'];
 
+
+echo '<head><style>';
+include 'css/info.css';
+echo '</style></head>';
+echo "<div class='stickytop'>";
+echo "<h1>Attendee Control Panel</h1>";
 $attendee->goBackButton();
+echo "</div>";
 $attendee->getAllSessions($userID);
 $attendee->getAllEvents($userID);
 
-echo "<form method='POST'> <button type='submit' name='LogOut' >Log Out</button></form>";
+echo "<form method='POST' > <button type='submit' name='LogOut' class='backButton'>Log Out</button></form>";
 if (isset($_POST['LogOut']))
 {
     session_destroy();

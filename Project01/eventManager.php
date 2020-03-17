@@ -13,6 +13,7 @@ echo "<title>Event Control Panel</title>";
 echo '<head><style>';
 include 'css/info.css';
 echo '</style></head>';
+
 echo "<div class='stickytop'>";
 echo "<h1>Event Manager Control Panel</h1>";
 $event->goBackButton();

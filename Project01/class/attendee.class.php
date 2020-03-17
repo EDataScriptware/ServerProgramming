@@ -27,12 +27,16 @@ class Attendee
         $result = mysqli_query($this->conn, $sql);
         $rows = mysqli_fetch_all($result);
         $row = 0;
-        $numberOfRows = mysqli_num_rows($result);
+        $numberOfRows = mysqli_num_rows($result);         
+        echo "<div class='bigbox'>";
+
         echo "<h2>All Available Sessions To Register</h2>";
        
         while ($row < $numberOfRows)
         {
             $eventName = $this->getAssociatedEvent($rows[$row][3]);
+            echo "<div class='box'>";
+
             echo "<p>Session Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p><p>Associated with Event: " 
                 . $eventName . "</p><p>Start Date: " . $rows[$row][4] . "</p><p>End Date: " . $rows[$row][5] . "</p>";
                 
@@ -41,7 +45,7 @@ class Attendee
                 $sessionID = $rows[$row][0];
                 $sessionName = $rows[$row][1];
                 
-                echo "<form method='POST'> <button type='submit' name='$registerSessionString' value='$sessionID' >REGISTER FOR <strong> $sessionName </strong>?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='$registerSessionString' value='$sessionID' class='button'>REGISTER FOR <strong> $sessionName </strong>?</button></form>";
 
                
 
@@ -51,9 +55,10 @@ class Attendee
                     header("location: events.php");
                     // echo $userID;
                 }
-                
+            echo "</div>";
             $row += 1;
         }
+        echo "</div>";
     }
 
     function getAllEvents($userID)
@@ -63,34 +68,38 @@ class Attendee
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
+        echo "<div class='bigbox'>";
+
         echo "<h2>All Available Events To Register</h2>";
 
         while ($row < $numberOfRows)
         {
             $venueName = $this->getAssociatedVenue($rows[$row][5]);
+            echo "<div class='box'>";
 
             $registerEventString = 'register' . $rows[$row][0] . 'event';
 
                 echo "<p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
                 . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p>";
                 
-                echo "<form method='POST'> <button type='submit' name='$registerEventString' value='" . $rows[$row][0] . "' >REGISTER <strong>" . $rows[$row][1] . "</strong> ?</button></form><hr>";
+                echo "<form method='POST'> <button type='submit' name='$registerEventString' value='" . $rows[$row][0] . "' class='button'>REGISTER <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
                 
                 if (isset($_POST["register".$rows[$row][0]."event"]))
                 {
                     $this->registerForEvent($rows[$row][0], $userID);
                     header("location: events.php");
                 }
-
+                echo "</div>";
                 $row += 1;
 
 
         }
+        echo "</div>";
     }
 
     function goBackButton()
     {
-        echo "<form method='POST'> <button type='submit' name='toEventPage' >Back to Events Page?</button></form>";
+        echo "<form method='POST'> <button type='submit' name='toEventPage' class='button'>Back to Events Page?</button></form>";
                 
         if (isset($_POST['toEventPage']))
         {
