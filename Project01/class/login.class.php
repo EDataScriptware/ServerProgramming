@@ -50,7 +50,7 @@ function logIn($user, $password)
         }
         else 
         {
-            echo "<p class='error'>Login Error!</p>";
+            echo "<p class='errorMessage'>Login Error!</p>";
         }
           
 

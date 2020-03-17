@@ -26,9 +26,10 @@ h1
 
 .errorMessage
 {
-    
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    text-align: center;
 }
-
 .littlebox 
 {
     background-color: whitesmoke;

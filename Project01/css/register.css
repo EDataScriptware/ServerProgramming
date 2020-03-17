@@ -21,6 +21,13 @@ html
     color: white;   
 }
 
+.errorMessage
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    text-align: center;
+}
+
 .button:active
 {
     background-color: gray;

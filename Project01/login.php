@@ -32,13 +32,13 @@ if (isset($_POST['submit']))
  
     if ( !(isset($_POST['login_name'])) || !(isset($_POST['login_password'])) )
     {
-        echo "<p class='error'>Missing information! One or more input is blank!</p>";
+        echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
     }
     else 
     {
         if ($_POST['login_name'] == null || $_POST['login_password'] == null)
         {
-            echo "<p class='error'>Missing information! One or more input is blank!</p>";
+            echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
         }
         else 
         {
