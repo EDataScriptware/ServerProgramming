@@ -1,5 +1,11 @@
 <?php 
 require_once("class/attendee.class.php");
+
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
+
 $attendee = new Attendee();
 $attendee->establishConnection();
 $userID = $_SESSION['userID'];

@@ -3,6 +3,11 @@ require_once("../class/admin.class.php");
 $db_admin = new Admin();
 $db_admin->establishConnection();
 
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
+
 echo "<title>Administrator Venue</title>";
 
 echo "<h1>Administrator Venue Page</h1>";

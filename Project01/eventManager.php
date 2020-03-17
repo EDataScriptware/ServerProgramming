@@ -4,6 +4,12 @@ require_once("class/events.class.php");
 $event = new Events();
 $event->establishConnection();
 
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
+
+
 $managerName = $_SESSION['user'];
 $managerID = $_SESSION['userID'];
 

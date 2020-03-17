@@ -4,6 +4,11 @@
     $admin = new Admin();
     $admin->establishConnection();
     
+    if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+    {
+        header("location: login.php");
+    }
+
 
     $userRole = $_SESSION['role_pass'];
     $userID = $_SESSION['userID_pass'];

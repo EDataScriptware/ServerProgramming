@@ -10,6 +10,11 @@ echo '</style></head>';
 echo "<title>Home Page</title>";
 echo "<h1>Home Page</h1>";
 
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
+
 $username = $_SESSION['user'];
 $userID = $_SESSION['userID'];
 $role = $_SESSION['role'];

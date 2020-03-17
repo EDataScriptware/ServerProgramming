@@ -4,6 +4,10 @@
     $db_admin = new Admin();
     $db_admin->establishConnection();
     
+    if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+    {
+        header("location: login.php");  
+    }
 
     $eventID = $_SESSION['eventID_pass'];
     $eventName = $_SESSION['eventname_pass'];

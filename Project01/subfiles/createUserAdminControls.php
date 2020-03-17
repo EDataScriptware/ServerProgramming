@@ -5,6 +5,11 @@ $db_register = new DBR();
 $db_login = new DBL();
 $db_register->establishConnection();
 
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
+
 echo "<title>Administrator Register</title>";
 
 echo "<h1>Administrator Registration Page</h1>";

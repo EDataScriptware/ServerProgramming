@@ -1,6 +1,11 @@
 <?php
     require_once("../class/admin.class.php");
 
+    if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+    {
+        header("location: login.php");
+    }
+
     $admin = new Admin();
     $admin->establishConnection();
     

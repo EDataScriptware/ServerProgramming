@@ -2,6 +2,13 @@
 require_once("../class/events.class.php");
 $db_events = new Events();
 $db_events->establishConnection();
+
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
+
+
 $managerID = $_SESSION['userID'];
 
 echo "<title>Event Manager Session</title>";

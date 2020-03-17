@@ -3,6 +3,10 @@ require_once("class/admin.class.php");
 $admin = new Admin();
 $admin->establishConnection();
 
+if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
+{
+    header("location: login.php");
+}
 
 echo "<title>Admininstrator Control Panel</title>";
 
