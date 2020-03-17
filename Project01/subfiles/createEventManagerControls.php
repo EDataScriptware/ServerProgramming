@@ -9,6 +9,10 @@ $db_event->establishConnection();
 
 echo "<title>Manager Event</title>";
 
+echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
+
 echo "<h1>Manager Event Page</h1>";
 echo "<form method='POST'>";
 echo "<p> Event Name: <input type='text' id='event_name' name='event_name'></p>";
@@ -18,8 +22,8 @@ echo "<p> Capacity: <input type='text' id='event_capacity' name='event_capacity'
 
 $db_event->getAllSelectedMenuVenues();
 
-echo "<input type='submit' name='submitEvent' value='Create Event'>";
-echo "<input type='submit' name='managerControls' value='Back To Manager Page'>";
+echo "<input type='submit' name='submitEvent' class='button' value='Create Event'>";
+echo "<input type='submit' name='managerControls' class='button' value='Back To Manager Page'>";
 echo "</form>";
 
 if (isset($_POST['managerControls']))

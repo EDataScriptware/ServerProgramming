@@ -5,6 +5,11 @@ $db_admin->establishConnection();
 
 echo "<title>Administrator Session</title>";
 
+echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
+
+
 echo "<h1>Administrator Session Page</h1>";
 echo "<form method='POST'>";
 echo "<p> Session ID: <input type='text' id='id' name='id'></p>";

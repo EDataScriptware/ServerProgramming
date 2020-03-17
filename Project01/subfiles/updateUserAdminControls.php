@@ -7,7 +7,11 @@
     $userRole = $_SESSION['role_pass'];
     $userID = $_SESSION['userID_pass'];
     $username = $_SESSION['username_pass'];
-
+    
+    echo '<head><style>';
+    include '../css/forms.css';
+    echo '</style></head>';
+    
     echo "<form method='POST'>";
     echo "<p> Username: <input type='text' id='register_name' name='register_name' value='$username'></p>";    
 
@@ -44,9 +48,9 @@
         </select></p>";
     }
 
-    echo "<input type='submit' name='updateName' value='Update'>";
-    echo "<input type='submit' name='deleteName' value='Delete This Account'>";
-    echo "<input type='submit' name='goBack' value='Go Back'>";
+    echo "<input type='submit' class='button' name='updateName' value='Update'>";
+    echo "<input type='submit' class='button' name='deleteName' value='Delete This Account'>";
+    echo "<input type='submit' class='button' name='goBack' value='Go Back'>";
     echo "</form>";
 
 

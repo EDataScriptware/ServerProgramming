@@ -9,13 +9,17 @@
     $venueName = $_SESSION['venuename_pass'];
     $venueCapacity = $_SESSION['venuecapacity_pass'];
 
+    echo '<head><style>';
+    include '../css/forms.css';
+    echo '</style></head>';
+
     echo "<form method='POST'>";
     echo "<p> Venue Name: <input type='text' id='name' name='name' value='$venueName'></p>";    
     echo "<p> Venue Capacity: <input type='text' id='capacity' name='capacity' value='$venueCapacity'></p>";    
 
-    echo "<input type='submit' name='updateVenue' value='Update'>";
-    echo "<input type='submit' name='deleteVenue' value='Delete This Venue'>";
-    echo "<input type='submit' name='goBack' value='Go Back'>";
+    echo "<input type='submit' class='button' name='updateVenue' value='Update'>";
+    echo "<input type='submit' class='button' name='deleteVenue' value='Delete This Venue'>";
+    echo "<input type='submit' class='button' name='goBack' value='Go Back'>";
     echo "</form>";
 
 

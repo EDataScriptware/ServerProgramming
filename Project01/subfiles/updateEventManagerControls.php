@@ -26,7 +26,11 @@
     $eventEndTime = $eventEndArray[1];
 
     echo "<title>Event Controller</title>";
-
+    
+    echo '<head><style>';
+    include '../css/forms.css';
+    echo '</style></head>';
+    
     echo "<h1>Event Page</h1>";
     echo "<form method='POST'>";
     echo "<p> Event Name: <input type='text' id='event_name' name='event_name' value='$eventName'></p>";
@@ -36,9 +40,9 @@
     
     $db_event->getAllSelectedMenuVenues();
     
-    echo "<input type='submit' name='updateEvent' value='Update'>";
-    echo "<input type='submit' name='deleteEvent' value='Delete This Event'>";
-    echo "<input type='submit' name='goBack' value='Go Back'>";
+    echo "<input type='submit' class='button' name='updateEvent' value='Update'>";
+    echo "<input type='submit' class='button' name='deleteEvent' value='Delete This Event'>";
+    echo "<input type='submit' class='button' name='goBack' value='Go Back'>";
        echo "</form>";
 
     if (isset($_POST['goBack']))

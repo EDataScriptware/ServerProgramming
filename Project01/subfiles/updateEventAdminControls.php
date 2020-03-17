@@ -22,6 +22,11 @@
 
     echo "<title>Administrator Event</title>";
 
+    echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
+
+
     echo "<h1>Administrator Event Page</h1>";
     echo "<form method='POST'>";
     echo "<p> Event Name: <input type='text' id='event_name' name='event_name' value='$eventName'></p>";
@@ -31,9 +36,9 @@
     
     $db_admin->getAllSelectedMenuVenues();
     
-    echo "<input type='submit' name='updateEvent' value='Update'>";
-    echo "<input type='submit' name='deleteEvent' value='Delete This Event'>";
-    echo "<input type='submit' name='goBack' value='Go Back'>";
+    echo "<input type='submit' name='updateEvent' class='button' value='Update'>";
+    echo "<input type='submit' name='deleteEvent' class='button' value='Delete This Event'>";
+    echo "<input type='submit' name='goBack' class='button' value='Go Back'>";
        echo "</form>";
 
     if (isset($_POST['goBack']))

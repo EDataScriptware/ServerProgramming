@@ -3,10 +3,13 @@ require_once("../class/events.class.php");
 $db_events = new Events();
 $db_events->establishConnection();
 
-
 $managerID = $_SESSION['userID'];
 
 echo "<title>Event Manager Session</title>";
+
+echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
 
 echo "<h1>Event Manager Session Page</h1>";
 echo "<form method='POST'>";
@@ -17,8 +20,8 @@ echo "<p> Capacity: <input type='text' id='session_capacity' name='session_capac
 
 $db_events->getAllSelectedMenuEventManager($managerID);
 
-echo "<input type='submit' name='submitSession' value='Create Session'>";
-echo "<input type='submit' name='managerControls' value='Back To Manager Page'>";
+echo "<input type='submit' name='submitSession' class='button' value='Create Session'>";
+echo "<input type='submit' name='managerControls' class='button' value='Back To Manager Page'>";
 echo "</form>";
 
 if (isset($_POST['managerControls']))

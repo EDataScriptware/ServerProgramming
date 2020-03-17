@@ -6,6 +6,11 @@ $managerID = $_SESSION['userID'];
 $db_admin = new Admin();
 $db_admin->establishConnection();
 
+
+echo '<head><style>';
+include '../css/forms.css';
+echo '</style></head>';
+
 echo "<title>Administrator Event</title>";
 
 echo "<h1>Administrator Event Page</h1>";
@@ -18,8 +23,8 @@ echo "<p> Capacity: <input type='text' id='event_capacity' name='event_capacity'
 
 $db_admin->getAllSelectedMenuVenues();
 
-echo "<input type='submit' name='submitEvent' value='Create Event'>";
-echo "<input type='submit' name='adminControls' value='Back To Admin Page'>";
+echo "<input type='submit' name='submitEvent' class='button' value='Create Event'>";
+echo "<input type='submit' name='adminControls' class='button' value='Back To Admin Page'>";
 echo "</form>";
 
 if (isset($_POST['adminControls']))

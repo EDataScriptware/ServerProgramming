@@ -22,6 +22,10 @@
 
     echo "<title>Administrator Session</title>";
 
+    echo '<head><style>';
+    include '../css/forms.css';
+    echo '</style></head>';
+
     echo "<h1>Administrator Session Page</h1>";
     echo "<form method='POST'>";
     echo "<p> Session Name: <input type='text' id='session_name' name='session_name' value='$sessionName'></p>";
@@ -31,9 +35,9 @@
     
     $db_events->getAllSelectedMenuEvent();
     
-    echo "<input type='submit' name='updateSession' value='Update'>";
-    echo "<input type='submit' name='deleteSession' value='Delete This Session'>";
-    echo "<input type='submit' name='goBack' value='Go Back'>";
+    echo "<input type='submit' class='button' name='updateSession' value='Update'>";
+    echo "<input type='submit' class='button' name='deleteSession' value='Delete This Session'>";
+    echo "<input type='submit' class='button' name='goBack' value='Go Back'>";
        echo "</form>";
 
     if (isset($_POST['goBack']))
