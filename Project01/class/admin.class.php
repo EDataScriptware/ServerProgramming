@@ -81,8 +81,15 @@ private $conn;
 
                 if (isset($_POST["delete".$userID."user"]))
                 {
-                    $this->deleteUserAccount($userID);
-                    header("location: adminControls.php");
+                    if ($userID == 1)
+                    {
+                       echo "<p class='errorMessage'> You cannot delete Master Admin!</p>";
+                    }
+                    else 
+                    {
+                        $this->deleteUserAccount($userID);
+                        header("location: adminControls.php");
+                    }
                 }
 
                 if (isset($_POST["update".$userID."user"]))
