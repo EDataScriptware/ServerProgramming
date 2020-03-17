@@ -10,6 +10,11 @@ form
     text-align: center;
 }
 
+.errorMessage
+{
+    color: red;     
+}
+
 html 
 {
     background-color: rgb(234, 232, 238);

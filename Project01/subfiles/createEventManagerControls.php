@@ -35,7 +35,7 @@ if (isset($_POST['submitEvent']))
 {
     if ( !(isset($_POST['event_capacity'])) || !(isset($_POST['event_name'])) || !(isset($_POST['event_startDate'])) || !(isset($_POST['event_startTime'])) || !(isset($_POST['event_endDate'])) || !(isset($_POST['event_endTime'])) || !(isset($_POST['event_selectedVenue'])) )
     {
-        echo "Missing information! One or more input is blank!";
+        echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
 
     }
     else 
@@ -43,7 +43,7 @@ if (isset($_POST['submitEvent']))
 
         if ($_POST['event_capacity'] == null || $_POST['event_name'] == null || $_POST['event_startDate'] == null || $_POST['event_startTime'] == null || $_POST['event_endTime'] == null || $_POST['event_endDate'] == null || $_POST['event_selectedVenue'] == null)
         {
-            echo "Missing information! One or more input is blank!";
+            echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
         }
         else 
         {
@@ -51,7 +51,7 @@ if (isset($_POST['submitEvent']))
                 
                 if ($db_event->checkEventNameExists($_POST['event_name']) == true)
                 {
-                    echo "Event Name already exists Try another name!";
+                    echo "<p class='errorMessage'>Event Name already exists Try another name!</p>";
                 }
                 else 
                 {

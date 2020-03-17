@@ -30,25 +30,25 @@ if (isset($_POST['submitVenue']))
    
     if (!(isset($_POST['capacity'])) || !(isset($_POST['venue_name'])) || !(isset($_POST['id'])))
     {
-        echo "Missing information! One or more input is blank!";
+        echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
     }
     else 
     {
 
         if ($_POST['id'] == null || $_POST['venue_name'] == null || $_POST['capacity'] == null)
         {
-            echo "Missing information! One or more input is blank!";
+            echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
         }
         else 
         {
                 
                 if  ($db_admin->checkVenueIdExists($_POST['id']) == true)
                 {
-                    echo "Venue ID already exists!";
+                    echo "<p class='errorMessage'>Venue ID already exists!</p>";
                 }
                 else if ($db_admin->checkVenueNameExists($_POST['venue_name']) == true)
                 {
-                    echo "Venue Name already exists!";
+                    echo "<p class='errorMessage'>Venue Name already exists!</p>";
                 }
                 else 
                 {

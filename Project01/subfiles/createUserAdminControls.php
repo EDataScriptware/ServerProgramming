@@ -56,31 +56,31 @@ if (isset($_POST['submitName']))
    
     if ( !(isset($_POST['verification_register_password'])) || !(isset($_POST['register_password'])) || !(isset($_POST['register_name'])) ||  !(isset($_POST['register_idname'])))
     {
-        echo "Missing information! One or more input is blank!";
+        echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
     }
     else 
     {
 
         if ($_POST['register_idname'] == null || $_POST['register_name'] == null || $_POST['verification_register_password'] == null || $_POST['register_password'] == null)
         {
-            echo "Missing information! One or more input is blank!";
+            echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
         }
         else 
         {
             // insert row
             if ($_POST['register_password'] != $_POST['verification_register_password'])
             {
-                echo "Passwords don't match!";
+                echo "<p class='errorMessage'>Passwords don't match!</p>";
             }
             else 
             {
                 if ($db_register->checkAccountExists($_POST['register_name']) == true)
                 {
-                    echo "Username already exists!";
+                    echo "<p class='errorMessage'>sername already exists!</p>";
                 }
                 else if  ($db_register->checkUserIDExists($_POST['register_idname']) == true)
                 {
-                    echo "UserID already exists!";
+                    echo "<p class='errorMessage'>UserID already exists!</p>";
                 }
                 else 
                 {

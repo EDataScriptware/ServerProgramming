@@ -33,7 +33,7 @@ if (isset($_POST['submitSession']))
 {
     if ( !(isset($_POST['session_capacity'])) || !(isset($_POST['session_name']) || !(isset($_POST['session_startDate'])) || !(isset($_POST['session_startTime'])) || !(isset($_POST['session_endDate'])) || !(isset($_POST['session_endTime'])) || !(isset($_POST['session_selectedEvent'])) ))
     {
-        echo "Missing information! One or more input is blank!";
+        echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
 
 
     }
@@ -42,7 +42,7 @@ if (isset($_POST['submitSession']))
 
         if ($_POST['session_capacity'] == null || $_POST['session_name'] == null || $_POST['session_startDate'] == null || $_POST['session_startTime'] == null || $_POST['session_endTime'] == null || $_POST['session_endDate'] == null || $_POST['session_selectedEvent'] == null)
         {
-            echo "Missing information! One or more input is blank!";
+            echo "<p class='errorMessage'>Missing information! One or more input is blank!</p>";
         }
         else 
         {
@@ -50,7 +50,7 @@ if (isset($_POST['submitSession']))
             
                 if ($db_events->checkSessionNameExists($_POST['session_name']) == true)
                 {
-                    echo "Session Name already exists!";
+                    echo "<p class='errorMessage'>Session Name already exists!</p>";
                 }
                 else 
                 {
@@ -63,7 +63,7 @@ if (isset($_POST['submitSession']))
                     }
                     catch (Exception $e)
                     {
-                        echo "<p> $e </p>";
+                        echo "<p class='errorMessage'> $e </p>";
                     }
                 }
         } // end is null
