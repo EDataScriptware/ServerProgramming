@@ -1,10 +1,5 @@
 <?php
     require_once("../class/events.class.php");
-
-    if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
-    {
-        header("location: login.php");
-    }
     
     $db_event = new Events();
     $db_event->establishConnection();

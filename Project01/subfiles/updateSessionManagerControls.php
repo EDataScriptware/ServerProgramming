@@ -4,11 +4,6 @@
     $db_events = new Events();
     $db_events->establishConnection();
     
-    if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION['role']) ) 
-    {
-        header("location: login.php");
-    }
-    
     $sessionID = $_SESSION['sessionID_pass'];
     $sessionName = $_SESSION['sessionname_pass'];
     $sessionCapacity = $_SESSION['sessioncapacity_pass'];
