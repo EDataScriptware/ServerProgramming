@@ -8,6 +8,7 @@ include '../css/forms.css';
 echo '</style></head>';
 
 echo "<title>Administrator Venue</title>";
+echo '<link rel="icon" href="../media/favicon.png" type="media/png" sizes="16x16">';
 
 echo "<h1>Administrator Venue Page</h1>";
 echo "<form method='POST'>";

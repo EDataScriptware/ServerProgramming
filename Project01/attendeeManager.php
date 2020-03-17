@@ -11,9 +11,12 @@ $attendee->establishConnection();
 $userID = $_SESSION['userID'];
 
 
+echo "<title> Attendee Control Panel</title>";
+echo '<link rel="icon" href="media/favicon.png" type="media/png" sizes="16x16">';
 echo '<head><style>';
 include 'css/info.css';
 echo '</style></head>';
+
 echo "<div class='stickytop'>";
 echo "<h1>Attendee Control Panel</h1>";
 $attendee->goBackButton();

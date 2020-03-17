@@ -8,6 +8,7 @@
     $venueID = $_SESSION['venueID_pass'];
     $venueName = $_SESSION['venuename_pass'];
     $venueCapacity = $_SESSION['venuecapacity_pass'];
+    echo '<link rel="icon" href="../media/favicon.png" type="media/png" sizes="16x16">';
 
     echo '<head><style>';
     include '../css/forms.css';

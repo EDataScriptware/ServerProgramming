@@ -14,7 +14,7 @@ $managerName = $_SESSION['user'];
 $managerID = $_SESSION['userID'];
 
 echo "<title>Event Control Panel</title>";
-
+echo '<link rel="icon" href="media/favicon.png" type="media/png" sizes="16x16">';
 
 echo '<head><style>';
 include 'css/info.css';

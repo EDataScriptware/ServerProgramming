@@ -7,6 +7,7 @@ $db_login = new DBL();
 $db_register->establishConnection();
 
 echo "<title>Administrator Register</title>";
+echo '<link rel="icon" href="../media/favicon.png" type="media/png" sizes="16x16">';
 
 echo '<head><style>';
 include '../css/forms.css';

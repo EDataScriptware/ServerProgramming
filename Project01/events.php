@@ -6,6 +6,7 @@ $events->establishConnection();
 echo '<head><style>';
 include 'css/events.css';
 echo '</style></head>';
+echo '<link rel="icon" href="media/favicon.png" type="media/png" sizes="16x16">';
 
 echo "<title>Home Page</title>";
 echo "<h1>Home Page</h1>";

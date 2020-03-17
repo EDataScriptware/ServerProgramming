@@ -26,7 +26,8 @@
     $eventEndTime = $eventEndArray[1];
 
     echo "<title>Event Controller</title>";
-    
+    echo '<link rel="icon" href="../media/favicon.png" type="media/png" sizes="16x16">';
+
     echo '<head><style>';
     include '../css/forms.css';
     echo '</style></head>';

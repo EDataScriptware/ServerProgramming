@@ -11,7 +11,8 @@
     echo '<head><style>';
     include '../css/forms.css';
     echo '</style></head>';
-    
+    echo '<link rel="icon" href="../media/favicon.png" type="media/png" sizes="16x16">';
+
     echo "<form method='POST'>";
     echo "<p> Username: <input type='text' id='register_name' name='register_name' value='$username'></p>";    
 

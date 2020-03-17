@@ -13,6 +13,7 @@ session_start();
 // echo '<head><link href="login.css" rel="stylesheet" type="text/css" ></head>';
 
 echo "<title>Login</title>";
+echo '<link rel="icon" href="media/favicon.png" type="media/png" sizes="16x16">';
 
 echo "<h1>Login Page</h1>";
 echo "<form method='POST'>";

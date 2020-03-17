@@ -9,6 +9,7 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['userID']) || !isset($_SESSION
 }
 
 echo "<title>Admininstrator Control Panel</title>";
+echo '<link rel="icon" href="media/favicon.png" type="media/png" sizes="16x16">';
 
 echo '<head><style>';
 include 'css/info.css';
