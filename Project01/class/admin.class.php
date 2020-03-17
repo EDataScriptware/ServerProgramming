@@ -25,7 +25,7 @@ private $conn;
 
     function goBackButton()
     {
-        echo "<form method='POST'> <button type='submit' name='toEventPage' >Back to Events Page?</button></form>";
+        echo "<form method='POST'> <button type='submit' name='toEventPage' class='button'>Back to Events Page?</button></form>";
                 
         if (isset($_POST['toEventPage']))
         {
@@ -41,8 +41,8 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Users</h2>";
-        echo "<form method='POST'> <button type='submit' name='createUser' value='createUser'>CREATE NEW USER</button></form><hr>";
+        echo "<div class='bigbox'><h2>All Users</h2>";
+        echo "<form method='POST'> <button type='submit' name='createUser' value='createUser' class='button' >CREATE NEW USER</button></form>";
         
         if (isset($_POST["createUser"]))
         {
@@ -55,14 +55,28 @@ private $conn;
             $username = $rows[$row][1];
             $role = $rows[$row][3];
            
-                echo "<p>ID Attendee: " . $userID . "</p><p>Username: " . $username . "</p><p>Role: " . $role . "</p>";
+                switch ($role)
+                {
+                    case 3:
+                        $role = "Attendee";
+                    break;
+                    case 2: 
+                        $role = "Event Manager";
+                    break;
+                    case 1:
+                        $role = "Administrator";
+                    break;
+                }
+
+                echo "<div class='box'>";
+                echo "<p><b>ID Attendee:</b> " . $userID . "</p><p><b>Username:</b> " . $username . "</p><p><b>Role:</b> " . $role . "</p>";
                 // $this->getAllUserSessions($userID);
                 
                 $deleteUserString = 'delete' . $userID . 'user';
                 $updateUserString = 'update' . $userID . 'user';
                 
-                echo "<form method='POST'> <button type='submit' name='$deleteUserString' value='$userID' >DELETE <strong> $username </strong>?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateUserString' value='$userID' >UPDATE <strong> $username </strong>?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='$deleteUserString' value='$userID' class='button' >DELETE <strong> $username </strong>?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='$updateUserString' value='$userID' class='button' >UPDATE <strong> $username </strong>?</button></form>";
 
                 if (isset($_POST["delete".$userID."user"]))
                 {
@@ -78,10 +92,12 @@ private $conn;
                     header("location: subfiles/updateUserAdminControls.php");
                   
                 }
+                echo "</div>";
+
                 $row += 1;
-                echo "<hr>";
 
         }
+        echo "</div>";
     }
 
     function deleteUserAccount($userID)
@@ -236,8 +252,8 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Venues</h2>";
-        echo "<form method='POST'> <button type='submit' name='createVenue' value='createVenue'>CREATE NEW VENUE</button></form><hr>";
+        echo "<div class='bigbox'><h2>All Venues</h2>";
+        echo "<form method='POST'> <button type='submit' name='createVenue' value='createVenue' class='button' >CREATE NEW VENUE</button></form>";
         
         if (isset($_POST["createVenue"]))
         {
@@ -247,9 +263,11 @@ private $conn;
         while ($row < $numberOfRows)
         {
            
-                echo "<p>ID Venue: " . $rows[$row][0] . "</p><p>Venue Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p>";
-                echo "<form method='POST'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form><hr>";
+                echo "<div class='box'>";
+                echo "<p><b>ID Venue:</b> " . $rows[$row][0] . "</p><p><b>Venue Name:</b> " . $rows[$row][1] . "</p><p><b>Capacity:</b> " . $rows[$row][2] . "</p>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='delete" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' class='button' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='update" . $rows[$row][0] . "venue' value='" . $rows[$row][0] . "' class='button' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+                echo "</div>";
 
                 if (isset($_POST["delete". $rows[$row][0]."venue"]))
                 {
@@ -269,6 +287,7 @@ private $conn;
 
 
         }
+        echo "</div>";
     }
 
     function getAllSessions()
@@ -278,8 +297,8 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Sessions</h2>";
-        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession'>CREATE NEW SESSION</button></form><hr>";
+        echo "<div class='bigbox'><h2>All Sessions</h2>";
+        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession' class='button'>CREATE NEW SESSION</button></form>";
         
         if (isset($_POST["createSession"]))
         {
@@ -289,6 +308,7 @@ private $conn;
         while ($row < $numberOfRows)
         {
             $eventName = $this->getAssociatedEvent($rows[$row][3]);
+            echo "<div class='box'>";
             echo "<p>Session ID: " . $rows[$row][0] . "</p><p>Session Name: " . $rows[$row][1] . "</p><p>Capacity: " . $rows[$row][2] . "</p><p>Associated with Event: " 
                 . $eventName . "</p><p>Start Date: " . $rows[$row][4] . "</p><p>End Date: " . $rows[$row][5] . "</p>";
                 
@@ -299,9 +319,10 @@ private $conn;
                 $sessionName = $rows[$row][1];
                 
                 
-                echo "<form method='POST'> <button type='submit' name='$deleteSessionString' value='$sessionID' >DELETE <strong> $sessionName </strong>?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateSessionString' value='$sessionID' >UPDATE <strong> $sessionName </strong>?</button></form><hr>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='$deleteSessionString' value='$sessionID' class='button' >DELETE <strong> $sessionName </strong>?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='$updateSessionString' value='$sessionID' class='button' >UPDATE <strong> $sessionName </strong>?</button></form>";
 
+                echo "</div>";
                 if (isset($_POST["delete". $rows[$row][0]."session"]))
                 {
                     $this->deleteSession($rows[$row][0]);
@@ -323,6 +344,7 @@ private $conn;
                 
             $row += 1;
         }
+        echo "</div>";
     }
 
     function updateSession($newSessionID, $newSessionName, $newSessionStartDate, $newSessionEndDate, $newSessionCapacity, $newSessionEvent)
@@ -370,8 +392,8 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<h2>All Events</h2>";
-        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent'>CREATE NEW EVENT</button></form><hr>";
+        echo "<div class='bigbox'><h2>All Events</h2>";
+        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent' class='button' >CREATE NEW EVENT</button></form>";
         
         if (isset($_POST["createEvent"]))
         {
@@ -384,11 +406,11 @@ private $conn;
 
             $deleteEventString = 'delete' . $rows[$row][0] . 'event';
             $updateEventString = 'update' . $rows[$row][0] . 'event';
-
+            echo "<div class='box'>";
                 echo "<p>Event ID: " . $rows[$row][0] . "</p><p>Event Name: " . $rows[$row][1] . "</p><p>Start Date:" . $rows[$row][2] . "</p><p>End Date: " 
                 . $rows[$row][3] . "</p><p>Capacity: " . $rows[$row][4] . "</p><p>Venue: " . $venueName . "</p>";
-                echo "<form method='POST'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' >DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
-                echo "<form method='POST'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' >UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form><hr>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='$deleteEventString' value='" . $rows[$row][0] . "' class='button'>DELETE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
+                echo "<form method='POST' class='inline'> <button type='submit' name='$updateEventString' value='" . $rows[$row][0] . "' class='button'>UPDATE <strong>" . $rows[$row][1] . "</strong> ?</button></form>";
                 
                 if (isset($_POST["delete". $rows[$row][0]."event"]))
                 {
@@ -408,11 +430,12 @@ private $conn;
                     header("location: subfiles/updateEventAdminControls.php");
                   
                 }
-                
+                echo "</div>";
                 $row += 1;
 
 
         }
+        echo "</div>";
     }
 
     function registerEventOwnership($eventID, $managerID)
