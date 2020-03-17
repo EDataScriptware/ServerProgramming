@@ -46,9 +46,9 @@ class Events
         while ($row < $numberOfRows)
         {
             $eventName = $this->getEventNames($rows[$row][0]);
-            echo "<p class='row'>Event #" . ($row + 1). ": " . $eventName . "</p>";
+            echo "<p>Event #" . ($row + 1). ": " . $eventName . "</p>";
             echo '<form method="POST"> <button type="submit" class="button" name="unregister' . $rows[$row][0] . 'event" >Unregister <strong>' .$eventName . '</strong> event?</button></form>';
-            
+            echo "</p>";
             if (isset($_POST['unregister' . $rows[$row][0] . 'event']))
             {
                 $this->unregisterEvent($rows[$row][0], $userID);
@@ -203,8 +203,8 @@ class Events
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
 
-        echo "<form method='POST'> <button type='submit' name='createEvent' value='createEvent' class='button'>CREATE NEW EVENT</button></form>";
-        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession' class='button'>CREATE NEW SESSION</button></form><hr>";
+        echo "<form method='POST' class='pushdown'> <button type='submit' name='createEvent' value='createEvent' class='button'>CREATE NEW EVENT</button></form>";
+        echo "<form method='POST'> <button type='submit' name='createSession' value='createSession' class='button'>CREATE NEW SESSION</button></form>";
 
         if (isset($_POST['createEvent']))
         {
@@ -215,9 +215,14 @@ class Events
         {
             header("location: subfiles/createSessionManagerControls.php");
         }
+        if ($row != 0)
+        {
+            echo "<div class='bigbox'>";
+        }
 
         while ($row < $numberOfRows)
         {
+            echo "<div class='box'>";
             $fullNames = $this->eventManagerGetEventNames($rows[$row][0]);
             $fullButtons = $this->eventManagerGetEventButtons($rows[$row][0]);
 
@@ -237,10 +242,13 @@ class Events
                 header("location: eventManager.php");
             }
             $this->getEventManagerCreatedSessions($rows[$row][0]);
-            echo "<hr>";
+            echo "</div>";
             $row += 1;
         }
-
+        if ($row != 0)
+        {
+            echo "</div>";
+        }
     }
 
     function getEventManagerCreatedSessions($eventID)
@@ -252,7 +260,7 @@ class Events
         $numberOfRows = mysqli_num_rows($result);
         while ($row < $numberOfRows)
         {
-                        
+            echo "<div class='littlebox'>";      
             echo "<p>Session #" . ($row + 1). ": " . $rows[$row][1] . "</p>";
                 $deleteSessionString = 'delete' . $rows[$row][0] . 'session';
                 $updateSessionString = 'update' . $rows[$row][0] . 'session';
@@ -282,7 +290,7 @@ class Events
                     header("location: subfiles/updateSessionManagerControls.php");
                   
                 }
-
+                echo "</div>";      
             $row += 1;
 
         }

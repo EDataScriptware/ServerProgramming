@@ -41,7 +41,7 @@ private $conn;
         $rows = mysqli_fetch_all($result);
         $row = 0;
         $numberOfRows = mysqli_num_rows($result);
-        echo "<div class='bigbox'><h2>All Users</h2>";
+        echo "<div class ='pushdown'><div class='bigbox'><h2>All Users</h2>";
         echo "<form method='POST'> <button type='submit' name='createUser' value='createUser' class='button' >CREATE NEW USER</button></form>";
         
         if (isset($_POST["createUser"]))
@@ -97,7 +97,7 @@ private $conn;
                 $row += 1;
 
         }
-        echo "</div>";
+        echo "</div></div>";
     }
 
     function deleteUserAccount($userID)
