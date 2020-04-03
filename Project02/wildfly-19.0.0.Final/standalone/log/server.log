@@ -1,0 +1,299 @@
+2020-04-02 19:49:45,501 INFO  [org.jboss.modules] (main) JBoss Modules version 1.10.0.Final
+2020-04-02 19:49:47,039 INFO  [org.jboss.msc] (main) JBoss MSC version 1.4.11.Final
+2020-04-02 19:49:47,053 INFO  [org.jboss.threads] (main) JBoss Threads version 2.3.3.Final
+2020-04-02 19:49:47,426 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0049: WildFly Full 19.0.0.Final (WildFly Core 11.0.0.Final) starting
+2020-04-02 19:49:47,432 DEBUG [org.jboss.as.config] (MSC service thread 1-2) Configured system properties:
+	[Standalone] = 
+	file.encoding = UTF-8
+	file.separator = /
+	ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+	http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+	java.awt.headless = true
+	java.class.path = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/jboss-modules.jar
+	java.class.version = 57.0
+	java.home = /Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home
+	java.io.tmpdir = /var/folders/z8/fzpqm2r50r97mppx40cbfx6r0000gn/T/
+	java.library.path = /Users/edward_riley/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+	java.net.preferIPv4Stack = true
+	java.runtime.name = Java(TM) SE Runtime Environment
+	java.runtime.version = 13.0.2+8
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 13
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Oracle Corporation
+	java.vendor.url = https://java.oracle.com/
+	java.vendor.url.bug = https://bugreport.java.com/bugreport/
+	java.version = 13.0.2
+	java.version.date = 2020-01-14
+	java.vm.compressedOopsMode = Zero based
+	java.vm.info = mixed mode, sharing
+	java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 13
+	java.vm.vendor = Oracle Corporation
+	java.vm.version = 13.0.2+8
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	jboss.home.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final
+	jboss.host.name = edwards-macbook-air
+	jboss.modules.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/modules
+	jboss.modules.system.pkgs = org.jboss.byteman
+	jboss.node.name = edwards-macbook-air
+	jboss.qualified.host.name = edwards-macbook-air.local
+	jboss.server.base.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone
+	jboss.server.config.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration
+	jboss.server.data.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/data
+	jboss.server.deploy.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/data/content
+	jboss.server.log.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/log
+	jboss.server.name = edwards-macbook-air
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/tmp
+	jdk.debug = release
+	line.separator = 
+
+	logging.configuration = file:/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration/logging.properties
+	module.path = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/modules
+	org.jboss.boot.log.file = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/log/server.log
+	org.jboss.resolver.warning = true
+	os.arch = x86_64
+	os.name = Mac OS X
+	os.version = 10.15.4
+	path.separator = :
+	socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+	sun.arch.data.model = 64
+	sun.boot.library.path = /Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home/lib
+	sun.cpu.endian = little
+	sun.io.unicode.encoding = UnicodeBig
+	sun.java.command = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/jboss-modules.jar -mp /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/modules org.jboss.as.standalone -Djboss.home.dir=/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final -Djboss.server.base.dir=/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = UTF-8
+	sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+	user.country = US
+	user.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/bin
+	user.home = /Users/edward_riley
+	user.language = en
+	user.name = edward_riley
+	user.timezone = America/Chicago
+2020-04-02 19:49:47,438 DEBUG [org.jboss.as.config] (MSC service thread 1-2) VM Arguments: -D[Standalone] -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED -Dorg.jboss.boot.log.file=/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/log/server.log -Dlogging.configuration=file:/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration/logging.properties 
+2020-04-02 19:49:48,912 INFO  [org.wildfly.security] (ServerService Thread Pool -- 27) ELY00001: WildFly Elytron version 1.11.2.Final
+2020-04-02 19:49:49,893 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2020-04-02 19:49:49,935 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 37) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2020-04-02 19:49:50,053 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+2020-04-02 19:49:50,106 INFO  [org.xnio] (MSC service thread 1-5) XNIO version 3.7.7.Final
+2020-04-02 19:49:50,124 INFO  [org.xnio.nio] (MSC service thread 1-5) XNIO NIO Implementation Version 3.7.7.Final
+2020-04-02 19:49:50,172 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 52) WFLYCLINF0001: Activating Infinispan subsystem.
+2020-04-02 19:49:50,263 INFO  [org.wildfly.extension.microprofile.config.smallrye._private] (ServerService Thread Pool -- 61) WFLYCONF0001: Activating WildFly MicroProfile Config Subsystem
+2020-04-02 19:49:50,287 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 66) WFLYNAM0001: Activating Naming Subsystem
+2020-04-02 19:49:50,202 INFO  [org.jboss.as.connector] (MSC service thread 1-6) WFLYJCA0009: Starting JCA Subsystem (WildFly/IronJacamar 1.4.20.Final)
+2020-04-02 19:49:50,212 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 54) WFLYRS0016: RESTEasy version 3.11.0.Final
+2020-04-02 19:49:50,259 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 59) WFLYJSF0007: Activated the following JSF Implementations: [main]
+2020-04-02 19:49:50,315 INFO  [org.wildfly.extension.microprofile.health.smallrye] (ServerService Thread Pool -- 62) WFLYHEALTH0001: Activating Eclipse MicroProfile Health Subsystem
+2020-04-02 19:49:50,315 INFO  [org.wildfly.extension.microprofile.metrics.smallrye] (ServerService Thread Pool -- 64) WFLYMETRICS0001: Activating Eclipse MicroProfile Metrics Subsystem
+2020-04-02 19:49:50,315 INFO  [org.wildfly.extension.microprofile.jwt.smallrye._private] (ServerService Thread Pool -- 63) WFLYJWT0001: Activating WildFly MicroProfile JWT Subsystem
+2020-04-02 19:49:50,316 INFO  [org.wildfly.extension.microprofile.opentracing] (ServerService Thread Pool -- 65) WFLYTRACEXT0001: Activating MicroProfile OpenTracing Subsystem
+2020-04-02 19:49:50,292 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 53) WFLYIO001: Worker 'default' has auto-configured to 8 IO threads with 64 max task threads based on your 4 available processors
+2020-04-02 19:49:50,219 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 44) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+2020-04-02 19:49:50,326 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 72) WFLYSEC0002: Activating Security Subsystem
+2020-04-02 19:49:50,366 INFO  [org.jboss.remoting] (MSC service thread 1-8) JBoss Remoting version 5.0.17.Final
+2020-04-02 19:49:50,395 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 76) WFLYWS0002: Activating WebServices Extension
+2020-04-02 19:49:50,386 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 74) WFLYTX0013: The node-identifier attribute on the /subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+2020-04-02 19:49:50,333 INFO  [org.jboss.as.naming] (MSC service thread 1-4) WFLYNAM0003: Starting Naming Service
+2020-04-02 19:49:50,332 INFO  [org.jboss.as.security] (MSC service thread 1-6) WFLYSEC0001: Current PicketBox version=5.0.3.Final
+2020-04-02 19:49:50,334 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-3) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+2020-04-02 19:49:50,399 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0018: Started Driver service with driver-name = h2
+2020-04-02 19:49:50,430 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0003: Undertow 2.0.30.Final starting
+2020-04-02 19:49:50,526 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 16 (per class), which is derived from the number of CPUs on this host.
+2020-04-02 19:49:50,527 INFO  [org.jboss.as.ejb3] (MSC service thread 1-8) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 64 (per class), which is derived from thread worker pool sizing.
+2020-04-02 19:49:50,546 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 75) WFLYUT0014: Creating file handler for path '/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+2020-04-02 19:49:50,557 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-8) WFLYUT0012: Started server default-server.
+2020-04-02 19:49:50,590 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0018: Host default-host starting
+2020-04-02 19:49:50,784 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-8) WFLYUT0006: Undertow HTTP listener default listening on 127.0.0.1:8080
+2020-04-02 19:49:51,006 INFO  [org.jboss.as.ejb3] (MSC service thread 1-5) WFLYEJB0493: EJB subsystem suspension complete
+2020-04-02 19:49:51,128 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-8) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+2020-04-02 19:49:51,431 INFO  [org.jboss.as.patching] (MSC service thread 1-6) WFLYPAT0050: WildFly Full cumulative patch ID is: base, one-off patches include: none
+2020-04-02 19:49:51,464 WARN  [org.jboss.as.domain.management.security] (MSC service thread 1-2) WFLYDM0111: Keystore /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration/application.keystore not found, it will be auto generated on first use with a self signed certificate for host localhost
+2020-04-02 19:49:51,504 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-5) WFLYDS0013: Started FileSystemDeploymentService for directory /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/deployments
+2020-04-02 19:49:51,613 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-1) WFLYUT0006: Undertow HTTPS listener https listening on 127.0.0.1:8443
+2020-04-02 19:49:51,744 INFO  [org.jboss.ws.common.management] (MSC service thread 1-4) JBWS022052: Starting JBossWS 5.4.1.Final (Apache CXF 3.3.5) 
+2020-04-02 19:49:51,897 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+2020-04-02 19:49:51,901 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+2020-04-02 19:49:51,901 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+2020-04-02 19:49:51,901 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 19.0.0.Final (WildFly Core 11.0.0.Final) started in 7108ms - Started 316 of 582 services (374 services are lazy, passive or on-demand)
+2020-04-02 19:51:42,815 INFO  [org.jboss.as.repository] (External Management Request Threads -- 1) WFLYDR0001: Content added at location /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/data/content/9d/08f46ce2b6be69675832face0357e5f043d092/content
+2020-04-02 19:51:42,854 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-2) WFLYSRV0027: Starting deployment of "RileyEP2.war" (runtime-name: "RileyEP2.war")
+2020-04-02 19:51:44,599 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0005: Deploying non-JDBC-compliant driver class com.mysql.cj.jdbc.Driver (version 8.0)
+2020-04-02 19:51:44,646 INFO  [org.infinispan.factories.GlobalComponentRegistry] (MSC service thread 1-3) ISPN000128: Infinispan version: Infinispan 'Infinity Minus ONE +2' 9.4.18.Final
+2020-04-02 19:51:44,737 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0018: Started Driver service with driver-name = RileyEP2.war_com.mysql.cj.jdbc.Driver_8_0
+2020-04-02 19:51:45,398 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 78) WFLYCLINF0002: Started client-mappings cache from ejb container
+2020-04-02 19:51:46,036 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 81) RESTEASY002225: Deploying javax.ws.rs.core.Application: class service.ApplicationConfig
+2020-04-02 19:51:46,038 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 81) RESTEASY002200: Adding class resource service.ProjectTwo from Application class service.ApplicationConfig
+2020-04-02 19:51:46,105 INFO  [org.hibernate.validator.internal.util.Version] (ServerService Thread Pool -- 81) HV000001: Hibernate Validator 6.0.18.Final
+2020-04-02 19:51:46,191 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 81) WFLYUT0021: Registered web context: '/RileyEP2' for server 'default-server'
+2020-04-02 19:51:46,266 INFO  [org.jboss.as.server] (External Management Request Threads -- 1) WFLYSRV0010: Deployed "RileyEP2.war" (runtime-name : "RileyEP2.war")
+2020-04-02 20:12:28,636 INFO  [org.jboss.as.server] (Thread-1) WFLYSRV0272: Suspending server
+2020-04-02 20:12:28,646 INFO  [org.jboss.as.ejb3] (Thread-1) WFLYEJB0493: EJB subsystem suspension complete
+2020-04-02 20:12:28,651 INFO  [org.jboss.as.server] (Thread-1) WFLYSRV0220: Server shutdown has been requested via an OS signal
+2020-04-02 20:12:28,670 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0019: Stopped Driver service with driver-name = RileyEP2.war_com.mysql.cj.jdbc.Driver_8_0
+2020-04-02 20:12:28,688 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-2) WFLYMAIL0002: Unbound mail session [java:jboss/mail/Default]
+2020-04-02 20:12:28,693 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 81) WFLYUT0022: Unregistered web context: '/RileyEP2' from server 'default-server'
+2020-04-02 20:12:28,707 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-7) WFLYJCA0010: Unbound data source [java:jboss/datasources/ExampleDS]
+2020-04-02 20:12:28,711 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0019: Host default-host stopping
+2020-04-02 20:12:28,721 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0019: Stopped Driver service with driver-name = h2
+2020-04-02 20:12:28,732 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 81) WFLYCLINF0003: Stopped client-mappings cache from ejb container
+2020-04-02 20:12:28,756 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0008: Undertow HTTP listener default suspending
+2020-04-02 20:12:28,756 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0008: Undertow HTTPS listener https suspending
+2020-04-02 20:12:28,759 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0007: Undertow HTTPS listener https stopped, was bound to 127.0.0.1:8443
+2020-04-02 20:12:28,759 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0007: Undertow HTTP listener default stopped, was bound to 127.0.0.1:8080
+2020-04-02 20:12:28,761 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0004: Undertow 2.0.30.Final stopping
+2020-04-02 20:12:28,774 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-1) WFLYSRV0028: Stopped deployment RileyEP2.war (runtime-name: RileyEP2.war) in 106ms
+2020-04-02 20:12:28,783 INFO  [org.jboss.as] (MSC service thread 1-3) WFLYSRV0050: WildFly Full 19.0.0.Final (WildFly Core 11.0.0.Final) stopped in 115ms
+2020-04-02 20:12:36,319 INFO  [org.jboss.modules] (main) JBoss Modules version 1.10.0.Final
+2020-04-02 20:12:37,033 INFO  [org.jboss.msc] (main) JBoss MSC version 1.4.11.Final
+2020-04-02 20:12:37,044 INFO  [org.jboss.threads] (main) JBoss Threads version 2.3.3.Final
+2020-04-02 20:12:37,259 INFO  [org.jboss.as] (MSC service thread 1-1) WFLYSRV0049: WildFly Full 19.0.0.Final (WildFly Core 11.0.0.Final) starting
+2020-04-02 20:12:37,263 DEBUG [org.jboss.as.config] (MSC service thread 1-1) Configured system properties:
+	[Standalone] = 
+	file.encoding = UTF-8
+	file.separator = /
+	ftp.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+	http.nonProxyHosts = local|*.local|169.254/16|*.169.254/16
+	java.awt.headless = true
+	java.class.path = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/jboss-modules.jar
+	java.class.version = 57.0
+	java.home = /Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home
+	java.io.tmpdir = /var/folders/z8/fzpqm2r50r97mppx40cbfx6r0000gn/T/
+	java.library.path = /Users/edward_riley/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+	java.net.preferIPv4Stack = true
+	java.runtime.name = Java(TM) SE Runtime Environment
+	java.runtime.version = 13.0.2+8
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 13
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Oracle Corporation
+	java.vendor.url = https://java.oracle.com/
+	java.vendor.url.bug = https://bugreport.java.com/bugreport/
+	java.version = 13.0.2
+	java.version.date = 2020-01-14
+	java.vm.compressedOopsMode = Zero based
+	java.vm.info = mixed mode, sharing
+	java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 13
+	java.vm.vendor = Oracle Corporation
+	java.vm.version = 13.0.2+8
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	jboss.home.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final
+	jboss.host.name = edwards-macbook-air
+	jboss.modules.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/modules
+	jboss.modules.system.pkgs = org.jboss.byteman
+	jboss.node.name = edwards-macbook-air
+	jboss.qualified.host.name = edwards-macbook-air.local
+	jboss.server.base.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone
+	jboss.server.config.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration
+	jboss.server.data.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/data
+	jboss.server.deploy.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/data/content
+	jboss.server.log.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/log
+	jboss.server.name = edwards-macbook-air
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/tmp
+	jdk.debug = release
+	line.separator = 
+
+	logging.configuration = file:/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration/logging.properties
+	module.path = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/modules
+	org.jboss.boot.log.file = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/log/server.log
+	org.jboss.resolver.warning = true
+	os.arch = x86_64
+	os.name = Mac OS X
+	os.version = 10.15.4
+	path.separator = :
+	socksNonProxyHosts = local|*.local|169.254/16|*.169.254/16
+	sun.arch.data.model = 64
+	sun.boot.library.path = /Library/Java/JavaVirtualMachines/jdk-13.0.2.jdk/Contents/Home/lib
+	sun.cpu.endian = little
+	sun.io.unicode.encoding = UnicodeBig
+	sun.java.command = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/jboss-modules.jar -mp /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/modules org.jboss.as.standalone -Djboss.home.dir=/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final -Djboss.server.base.dir=/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = UTF-8
+	sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+	user.country = US
+	user.dir = /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/bin
+	user.home = /Users/edward_riley
+	user.language = en
+	user.name = edward_riley
+	user.timezone = America/Chicago
+2020-04-02 20:12:37,267 DEBUG [org.jboss.as.config] (MSC service thread 1-1) VM Arguments: -D[Standalone] -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED -Dorg.jboss.boot.log.file=/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/log/server.log -Dlogging.configuration=file:/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration/logging.properties 
+2020-04-02 20:12:38,511 INFO  [org.wildfly.security] (ServerService Thread Pool -- 27) ELY00001: WildFly Elytron version 1.11.2.Final
+2020-04-02 20:12:39,299 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2020-04-02 20:12:39,333 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 37) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+2020-04-02 20:12:39,428 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+2020-04-02 20:12:39,455 INFO  [org.xnio] (MSC service thread 1-8) XNIO version 3.7.7.Final
+2020-04-02 20:12:39,469 INFO  [org.xnio.nio] (MSC service thread 1-8) XNIO NIO Implementation Version 3.7.7.Final
+2020-04-02 20:12:39,512 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 52) WFLYCLINF0001: Activating Infinispan subsystem.
+2020-04-02 20:12:39,543 INFO  [org.jboss.remoting] (MSC service thread 1-3) JBoss Remoting version 5.0.17.Final
+2020-04-02 20:12:39,609 INFO  [org.wildfly.extension.microprofile.config.smallrye._private] (ServerService Thread Pool -- 61) WFLYCONF0001: Activating WildFly MicroProfile Config Subsystem
+2020-04-02 20:12:39,541 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 59) WFLYJSF0007: Activated the following JSF Implementations: [main]
+2020-04-02 20:12:39,575 INFO  [org.jboss.as.connector] (MSC service thread 1-1) WFLYJCA0009: Starting JCA Subsystem (WildFly/IronJacamar 1.4.20.Final)
+2020-04-02 20:12:39,634 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 72) WFLYSEC0002: Activating Security Subsystem
+2020-04-02 20:12:39,629 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 66) WFLYNAM0001: Activating Naming Subsystem
+2020-04-02 20:12:39,553 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 54) WFLYRS0016: RESTEasy version 3.11.0.Final
+2020-04-02 20:12:39,629 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 74) WFLYTX0013: The node-identifier attribute on the /subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+2020-04-02 20:12:39,626 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 53) WFLYIO001: Worker 'default' has auto-configured to 8 IO threads with 64 max task threads based on your 4 available processors
+2020-04-02 20:12:39,682 INFO  [org.wildfly.extension.microprofile.jwt.smallrye._private] (ServerService Thread Pool -- 63) WFLYJWT0001: Activating WildFly MicroProfile JWT Subsystem
+2020-04-02 20:12:39,685 INFO  [org.wildfly.extension.microprofile.opentracing] (ServerService Thread Pool -- 65) WFLYTRACEXT0001: Activating MicroProfile OpenTracing Subsystem
+2020-04-02 20:12:39,686 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 76) WFLYWS0002: Activating WebServices Extension
+2020-04-02 20:12:39,691 INFO  [org.wildfly.extension.microprofile.metrics.smallrye] (ServerService Thread Pool -- 64) WFLYMETRICS0001: Activating Eclipse MicroProfile Metrics Subsystem
+2020-04-02 20:12:39,693 INFO  [org.wildfly.extension.microprofile.health.smallrye] (ServerService Thread Pool -- 62) WFLYHEALTH0001: Activating Eclipse MicroProfile Health Subsystem
+2020-04-02 20:12:39,641 INFO  [org.jboss.as.security] (MSC service thread 1-5) WFLYSEC0001: Current PicketBox version=5.0.3.Final
+2020-04-02 20:12:39,672 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-4) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+2020-04-02 20:12:39,657 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 44) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+2020-04-02 20:12:39,730 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0003: Undertow 2.0.30.Final starting
+2020-04-02 20:12:39,671 INFO  [org.jboss.as.naming] (MSC service thread 1-8) WFLYNAM0003: Starting Naming Service
+2020-04-02 20:12:39,758 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-8) WFLYJCA0018: Started Driver service with driver-name = h2
+2020-04-02 20:12:39,819 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 75) WFLYUT0014: Creating file handler for path '/Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+2020-04-02 20:12:39,843 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0012: Started server default-server.
+2020-04-02 20:12:39,848 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-4) WFLYUT0018: Host default-host starting
+2020-04-02 20:12:39,883 INFO  [org.jboss.as.ejb3] (MSC service thread 1-4) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 16 (per class), which is derived from the number of CPUs on this host.
+2020-04-02 20:12:39,883 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 64 (per class), which is derived from thread worker pool sizing.
+2020-04-02 20:12:40,082 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0006: Undertow HTTP listener default listening on 127.0.0.1:8080
+2020-04-02 20:12:40,262 INFO  [org.jboss.as.ejb3] (MSC service thread 1-3) WFLYEJB0493: EJB subsystem suspension complete
+2020-04-02 20:12:40,393 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-1) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+2020-04-02 20:12:40,737 INFO  [org.jboss.as.patching] (MSC service thread 1-1) WFLYPAT0050: WildFly Full cumulative patch ID is: base, one-off patches include: none
+2020-04-02 20:12:40,754 WARN  [org.jboss.as.domain.management.security] (MSC service thread 1-7) WFLYDM0111: Keystore /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/configuration/application.keystore not found, it will be auto generated on first use with a self signed certificate for host localhost
+2020-04-02 20:12:40,778 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-7) WFLYDS0013: Started FileSystemDeploymentService for directory /Users/edward_riley/Desktop/ServerProgramming/Project02/wildfly-19.0.0.Final/standalone/deployments
+2020-04-02 20:12:40,780 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-5) WFLYSRV0027: Starting deployment of "RileyEP2.war" (runtime-name: "RileyEP2.war")
+2020-04-02 20:12:40,856 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0006: Undertow HTTPS listener https listening on 127.0.0.1:8443
+2020-04-02 20:12:40,992 INFO  [org.jboss.ws.common.management] (MSC service thread 1-8) JBWS022052: Starting JBossWS 5.4.1.Final (Apache CXF 3.3.5) 
+2020-04-02 20:12:42,491 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-3) WFLYJCA0005: Deploying non-JDBC-compliant driver class com.mysql.cj.jdbc.Driver (version 8.0)
+2020-04-02 20:12:42,540 INFO  [org.infinispan.factories.GlobalComponentRegistry] (MSC service thread 1-8) ISPN000128: Infinispan version: Infinispan 'Infinity Minus ONE +2' 9.4.18.Final
+2020-04-02 20:12:42,564 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-2) WFLYJCA0018: Started Driver service with driver-name = RileyEP2.war_com.mysql.cj.jdbc.Driver_8_0
+2020-04-02 20:12:43,163 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 78) WFLYCLINF0002: Started client-mappings cache from ejb container
+2020-04-02 20:12:43,780 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 79) RESTEASY002225: Deploying javax.ws.rs.core.Application: class service.ApplicationConfig
+2020-04-02 20:12:43,783 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 79) RESTEASY002200: Adding class resource service.ProjectTwo from Application class service.ApplicationConfig
+2020-04-02 20:12:43,852 INFO  [org.hibernate.validator.internal.util.Version] (ServerService Thread Pool -- 79) HV000001: Hibernate Validator 6.0.18.Final
+2020-04-02 20:12:43,907 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 79) WFLYUT0021: Registered web context: '/RileyEP2' for server 'default-server'
+2020-04-02 20:12:44,002 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0010: Deployed "RileyEP2.war" (runtime-name : "RileyEP2.war")
+2020-04-02 20:12:44,065 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+2020-04-02 20:12:44,068 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+2020-04-02 20:12:44,068 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+2020-04-02 20:12:44,068 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 19.0.0.Final (WildFly Core 11.0.0.Final) started in 8537ms - Started 419 of 648 services (379 services are lazy, passive or on-demand)
+2020-04-02 20:33:51,967 INFO  [org.jboss.as.server] (Thread-1) WFLYSRV0272: Suspending server
+2020-04-02 20:33:51,973 INFO  [org.jboss.as.ejb3] (Thread-1) WFLYEJB0493: EJB subsystem suspension complete
+2020-04-02 20:33:51,976 INFO  [org.jboss.as.server] (Thread-1) WFLYSRV0220: Server shutdown has been requested via an OS signal
+2020-04-02 20:33:52,005 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0019: Stopped Driver service with driver-name = RileyEP2.war_com.mysql.cj.jdbc.Driver_8_0
+2020-04-02 20:33:52,008 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-1) WFLYMAIL0002: Unbound mail session [java:jboss/mail/Default]
+2020-04-02 20:33:52,013 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 79) WFLYUT0022: Unregistered web context: '/RileyEP2' from server 'default-server'
+2020-04-02 20:33:52,025 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-2) WFLYJCA0010: Unbound data source [java:jboss/datasources/ExampleDS]
+2020-04-02 20:33:52,027 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0019: Host default-host stopping
+2020-04-02 20:33:52,042 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-1) WFLYJCA0019: Stopped Driver service with driver-name = h2
+2020-04-02 20:33:52,054 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 79) WFLYCLINF0003: Stopped client-mappings cache from ejb container
+2020-04-02 20:33:52,073 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0008: Undertow HTTP listener default suspending
+2020-04-02 20:33:52,073 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0008: Undertow HTTPS listener https suspending
+2020-04-02 20:33:52,074 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) WFLYUT0007: Undertow HTTP listener default stopped, was bound to 127.0.0.1:8080
+2020-04-02 20:33:52,074 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0007: Undertow HTTPS listener https stopped, was bound to 127.0.0.1:8443
+2020-04-02 20:33:52,077 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0004: Undertow 2.0.30.Final stopping
+2020-04-02 20:33:52,080 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-4) WFLYSRV0028: Stopped deployment RileyEP2.war (runtime-name: RileyEP2.war) in 99ms
+2020-04-02 20:33:52,091 INFO  [org.jboss.as] (MSC service thread 1-4) WFLYSRV0050: WildFly Full 19.0.0.Final (WildFly Core 11.0.0.Final) stopped in 110ms

@@ -30,7 +30,7 @@ public class CompanyServices {
    @Context
    UriInfo uriInfo;
    
-   / 
+   
    @Path("/company")
    @GET
    @Produces("application/json")

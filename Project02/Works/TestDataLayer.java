@@ -11,13 +11,13 @@ public class TestDataLayer {
       DataLayer dl = null;
  //include company in employee no because unique     
       try {
-         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF bdfvks
-         dl = new DataLayer("esb3618");  
+         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF emr9018
+         dl = new DataLayer("emr9018");  
       
          //Department
 /*         
-         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF bdfvks
-         Department dept = new Department("bdfvks","IT","d50","rochester");
+         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF emr9018
+         Department dept = new Department("emr9018","IT","d50","rochester");
          dept = dl.insertDepartment(dept);
          if (dept.getId() > 0) {
             System.out.println("inserted id: "+ dept.getId());
@@ -25,8 +25,8 @@ public class TestDataLayer {
             System.out.println("Not inserted");
          }
 */         
-         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF bdfvks
-         List<Department> departments = dl.getAllDepartment("esb3618");
+         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF emr9018
+         List<Department> departments = dl.getAllDepartment("emr9018");
         
          for(Department d : departments ){    	  
             System.out.println(d.getId());
@@ -37,8 +37,8 @@ public class TestDataLayer {
             System.out.println("--------\n\n");
          } 
 /*              
-         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF bdfvks and department id must exist
-         Department department = dl.getDepartmentNo("bdfvks","d10"); 
+         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF emr9018 and department id must exist
+         Department department = dl.getDepartmentNo("emr9018","d10"); 
 	  
          //Print the department details
          System.out.println("\n\nCurrent Department:");
@@ -49,7 +49,7 @@ public class TestDataLayer {
          System.out.println(department.getLocation());
 
          
-         department = dl.getDepartment("bdfvks",5); 
+         department = dl.getDepartment("emr9018",5); 
 	  
          //Print the department details
          System.out.println("\n\nCurrent Department:");
@@ -70,9 +70,9 @@ public class TestDataLayer {
          System.out.println(department.getDeptNo());
          System.out.println(department.getLocation());
         
-        // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF bdfvks and department id must exist
+        // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF emr9018 and department id must exist
         //    and all employees should be deleted first
-        int deleted = dl.deleteDepartment("bdfvks",5);
+        int deleted = dl.deleteDepartment("emr9018",5);
          if (deleted >= 1) {
             System.out.println("\nDepartment deleted");
          } else {
@@ -82,7 +82,7 @@ public class TestDataLayer {
          //Employee
          
         // REMEMBER: USE AN ID FOR your department in place of '4' and manager id must exist as an employee, unless they don't have a manager
-         Employee emp = new Employee("French","bdfvkse55", new java.sql.Date(new java.util.Date().getTime()),"Developer",80000.00, 121, 0);
+         Employee emp = new Employee("French","emr9018e55", new java.sql.Date(new java.util.Date().getTime()),"Developer",80000.00, 121, 0);
          emp = dl.insertEmployee(emp);
          if (emp.getId() > 0) {
             System.out.println("inserted id: "+ emp.getId());
@@ -91,8 +91,8 @@ public class TestDataLayer {
          }
 
 
-         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF bdfvks 
-         List<Employee> employees = dl.getAllEmployee("bdfvks");        
+         // REMEMBER: USE YOUR ID FOR COMPANY IN PLACE OF emr9018 
+         List<Employee> employees = dl.getAllEmployee("emr9018");        
         
          for(Employee empl : employees ){    	  
             System.out.println(empl.getId());
@@ -205,7 +205,7 @@ public class TestDataLayer {
  */        
          //delete all for a company
          
-//          int numRowsDeleted = dl.deleteCompany("bdfvks");
+//          int numRowsDeleted = dl.deleteCompany("emr9018");
 //          System.out.println("Number of rows deleted: "+numRowsDeleted);
 
       } catch (Exception e) {

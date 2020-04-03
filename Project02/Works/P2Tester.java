@@ -29,7 +29,7 @@ class P2Tester {
       
       try {
          String baseUrl = "http://localhost:8080/"+args[0]+"/resources/CompanyServices/";
-        String company = args[1];
+        String company = args[1]; // RIT username
          
          HttpClient client = HttpClientBuilder.create().build();
          HttpPost postRequest;
