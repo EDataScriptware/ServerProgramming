@@ -8,7 +8,7 @@ app.use(cookieParser())
 var urlencodedParser = express.urlencoded({extended:false});
 
 
-app.use(express.static('companydata'));
+app.use(express.static('public'));
 
 app.get('/index.html', function(req, res)
 {
@@ -44,11 +44,15 @@ app.post('/process_post', urlencodedParser, function(req, res)
 
 app.get('/',function(req,res)
 {
-     console.log("Got a GET request for the homepage!");
-    console.log("User has entered the root address.");
     
-    res.send("Hello GET! You're at the root address!");
-    //res.send("User has entered the root address.");
+    
+    console.log("Got a GET request for the homepage!");
+    console.log(req.cookies);
+    
+    // res.send("Hello GET!");
+    res.end(JSON.stringify(req.cookies));
+
+    
 });
 
 
