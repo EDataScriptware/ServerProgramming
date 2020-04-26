@@ -1,5 +1,20 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
+ 
+
+// ReferenceError: department is not defined
+// require('./companydata/department.js'); // gets the department javascript class
+
+
+//TypeError: department.getDeptID() is not a function
+var department = require('./companydata/department.js'); // gets the department javascript class
+
+// SyntaxError: Cannot use import statement outside a module
+// import department from './companydata/department.js'; // gets the department javascript class
+
+
+// Include is not a recognized function 
+//include('./companydata/department.js'); // gets the department javascript class
 
 var app = express();
 app.use(cookieParser())
@@ -8,12 +23,7 @@ app.use(cookieParser())
 var urlencodedParser = express.urlencoded({extended:false});
 
 
-app.use(express.static('public'));
-
-app.get('/index.html', function(req, res)
-{
-    res.sendFile(__dirname+"/index.html");
-})
+app.use(express.static('companydata'));
 
 // GET METHOD
 app.get('/process_get', function(req, res)
@@ -46,19 +56,15 @@ app.get('/',function(req,res)
 {
     
     
-    console.log("Got a GET request for the homepage!");
-    console.log(req.cookies);
+    console.log("Got a GET request for the root page!");
     
-    // res.send("Hello GET!");
-    res.end(JSON.stringify(req.cookies));
-
-    
+    res.send(department.getDeptID());
 });
 
 
 app.post('/', function(req, res)
 {
-    console.log("Got a POST request for the homepage!");
+    console.log("Got a POST request for the root page!");
     res.send("Hello POST!")
 
 });
