@@ -23,7 +23,7 @@ class P3Tester {
 
    public static void main(String[] args) {
       if (args.length != 1) {
-         System.out.println("Usage: \"company name\"");
+         System.out.println("Usage: \"emr9018\"");
          System.exit(1);
       }
       

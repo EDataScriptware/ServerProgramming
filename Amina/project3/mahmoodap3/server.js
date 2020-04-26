@@ -1,13 +1,6 @@
 var express = require('express');
 var app = express();
 
-/*
-* Amina Mahmood
-* Project 3 Node
-* ISTE 341 - Server Programming
-* Professor Bryan French
-*/
-
 //Import the routers for each path
 var basepath = "/CompanyServices";
 var department = require('./routes/department.js');

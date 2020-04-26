@@ -5,13 +5,6 @@ var dataLayer = require("../companydata/index.js");
 var json = express.json();
 var urlEncodedPaser = express.urlencoded({extended:false});
 
-/*
-* Amina Mahmood
-* Project 3 Node
-* ISTE 341 - Server Programming
-* Professor Bryan French
-*/
-
 router.route('/') .all(function(req, res, next) {
   bl = new businessLayer();
   next();
