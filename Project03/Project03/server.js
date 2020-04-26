@@ -23,6 +23,4 @@ var server = app.listen(8080, function()
 app.get('/', function(req, res)
 {
     console.log("Got a GET request for the root page!");
-
-    
 });
