@@ -27,7 +27,6 @@ router.route('/') .all(function(req, res, next)
     }
     try 
     {
-        //dept_id is valid, continue
         var dl = new dataLayer(company);
         var emp = dl.getEmployee(id);
         if (emp !== null)
@@ -58,10 +57,8 @@ router.route('/') .all(function(req, res, next)
 
     try
     {
-        //make the datalayer
         var dl = new dataLayer(company);
 
-        //get the rest of the parameters
         var empName = req.body.emp_name;
         var empNo = req.body.emp_no;
         var hireDate = req.body.hire_date;

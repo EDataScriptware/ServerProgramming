@@ -14,13 +14,10 @@ var dl = new DataLayer("emr9018");
 var app = express();
 app.use(cookieParser())
 
-// Needed for POST method - saved here just in case
-var urlencodedParser = express.urlencoded({extended:false});
-
-// Start the server
+// Starts the server at Port 8080
 var server = app.listen(8080, function() {
     var host = server.address().address;
-    if (host == "::") // more user friendly
+    if (host == "::") // more user friendly for IT because I like seeing localhost:8080 than :::8080
     {
         host = "localhost";
     }

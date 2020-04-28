@@ -3,7 +3,6 @@ var router = express.Router();
 var businessLayer = require("../businessLayer.js");
 var dataLayer = require("../companydata/index.js");
 
-/* GET home page. */
 router.route('/') .get(function(req, res)
 {
         var bl = new businessLayer();
@@ -11,7 +10,6 @@ router.route('/') .get(function(req, res)
         var company = req.query.company;
         var empId = parseInt(req.query.emp_id);
 
-        //to check if the company name is valid
         if(!bl.validateCompanyName(company)) 
         {
             return bl.invalidCompany(res);
