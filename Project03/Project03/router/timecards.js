@@ -4,36 +4,46 @@ var businessLayer = require("../businessLayer.js");
 var dataLayer = require("../companydata/index.js");
 
 /* GET home page. */
-router.route('/') .get(function(req, res) {
+router.route('/') .get(function(req, res)
+{
         var bl = new businessLayer();
 
         var company = req.query.company;
         var empId = parseInt(req.query.emp_id);
 
         //to check if the company name is valid
-        if(!bl.validateCompanyName(company)) {
+        if(!bl.validateCompanyName(company)) 
+        {
             return bl.invalidCompany(res);
         }
 
-        try {
+        try
+        {
             var dl = new dataLayer(company);
             
-            if(dl.getEmployee(empId) != null) {
+            if(dl.getEmployee(empId) != null) 
+            {
             
                 var cards = dl.getAllTimecard(empId);
                 
-                if(cards.length > 0) {
+                if(cards.length > 0)
+                {
                    
                    return bl.jsonOk(res, cards);
                    
-                } else {
+                }
+                else 
+                {
                    return bl.errorRequest(res, "No timecards found for requested employee");
                 }
-             } else {
+            } 
+            else 
+            {
                 return bl.errorRequest(res, "Employee ID Not Found");
-             }
+            }
         }
-        catch(ex) {
+        catch(ex) 
+        {
             console.log(ex);
             return bl.errorMessage(res);
         }

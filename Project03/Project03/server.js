@@ -1,8 +1,9 @@
 /*
     NAME: Edward Riley
-
-
-
+    PROFESSOR: Bryan French
+    TA: Josh Haber
+    ASSIGNMENT: Project 03
+    DATE: April 28, 2020
 */
 
 var DataLayer = require("./companydata/index.js");
@@ -13,7 +14,7 @@ var dl = new DataLayer("emr9018");
 var app = express();
 app.use(cookieParser())
 
-// Needed for POST method
+// Needed for POST method - saved here just in case
 var urlencodedParser = express.urlencoded({extended:false});
 
 // Start the server
@@ -27,7 +28,15 @@ var server = app.listen(8080, function() {
     console.log("Listening on " + host + ":"+  port);
 });
 
-//Import the routers for each path
+// Checks to see if the server is working
+app.get('/',function(req,res)
+{
+    console.log("Got a GET request for the root page!");
+
+    res.send("Connection works!");
+});
+
+// Import class object for each path
 var basepath = "/CompanyServices";
 var department = require('./router/department.js');
 var departments = require('./router/departments.js');
