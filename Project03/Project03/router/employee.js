@@ -14,7 +14,7 @@ router.route('/') .all(function(req, res, next)
 .get(function(req, res)
 {
     var company = req.query.company;
-    var id = req.query.emp_id;
+    var ID = req.query.emp_id;
 
     if(!bl.validateCompanyName(company)) 
     {
@@ -23,7 +23,7 @@ router.route('/') .all(function(req, res, next)
 
     if(!(id > 0)) 
     {
-        return bl.badRequest(res, "Invalid employee id provided");
+        return bl.badRequest(res, "Invalid employee ID given.");
     }
     try 
     {
@@ -35,7 +35,7 @@ router.route('/') .all(function(req, res, next)
         }
         else
         {
-            return bl.errorRequest(res, "Could not find provided Employee Id")
+            return bl.errorRequest(res, "Unable to find the given Employee ID.")
         }
     }
 
@@ -64,23 +64,23 @@ router.route('/') .all(function(req, res, next)
         var hireDate = req.body.hire_date;
         var job = req.body.job;
         var salary = parseFloat(req.body.salary);
-        var deptId = parseInt(req.body.dept_id);
-        var mngId = parseInt(req.body.mng_id);
+        var departmentID = parseInt(req.body.dept_id);
+        var managerID = parseInt(req.body.mng_id);
 
-        if(dl.getDepartment(company, deptId) === null) 
+        if(dl.getDepartment(company, departmentID) === null) 
         {
-            return bl.badRequest(res, "Department ID provided not found");
+            return bl.badRequest(res, "Department ID given not found.");
         }
       
-        if(!(mngId === 0 || dl.getEmployee(mngId) !== null))
+        if(!(managerID === 0 || dl.getEmployee(managerID) !== null))
         {
-            return bl.errorRequest(res, "Manager ID provided not found");
+            return bl.errorRequest(res, "Manager ID given not found.");
         }
 
         var validDate = bl.buildAndValidateDate(hireDate);
         if(validDate === null) 
         {
-            return bl.badRequest(res, "Hire Date provided is not valid");
+            return bl.badRequest(res, "Hiring date given is invalid.");
         }
 
         if(!empNo.includes("-"+company))
@@ -88,11 +88,11 @@ router.route('/') .all(function(req, res, next)
             empNo = empNo += "-" + company;
         }
 
-        var newEmp = dl.insertEmployee(new dl.Employee(empName, empNo, validDate, job, salary, deptId, mngId));
+        var newEmp = dl.insertEmployee(new dl.Employee(empName, empNo, validDate, job, salary, departmentID, managerID));
 
         if(newEmp === null)
         {
-            return bl.badRequest(res, "Employee Number or ID already exists or not all parameters provided");
+            return bl.badRequest(res, "Employee Number or ID already exists or not all information is given.");
         }
 
         return bl.jsonOk(res, newEmp);
@@ -114,15 +114,15 @@ router.route('/') .all(function(req, res, next)
 
     try
     {
-        var dl = new DataLayer(company);//build the dl
+        var dl = new DataLayer(company);
 
-        var empId = req.body.emp_id;
-        if(typeof empId === 'undefined')
+        var employeeID = req.body.emp_id;
+        if(typeof employeeID === 'undefined')
         {
-            return bl.badRequest(res, "Employee ID is not provided.")
+            return bl.badRequest(res, "Employee ID is not given.")
         }
 
-        var oldEmp = dl.getEmployee(empId);
+        var oldEmp = dl.getEmployee(employeeID);
 
         if(oldEmp === null)
         {
@@ -134,17 +134,17 @@ router.route('/') .all(function(req, res, next)
         var hireDate = typeof req.body.hire_date !== 'undefined' ? bl.buildAndValidateDate(String(req.body.hire_date)) : oldEmp.getHireDate();
         var job = typeof req.body.job !== 'undefined' ? String(req.body.job) : oldEmp.getJob();
         var salary = typeof req.body.salary !== 'undefined' ? parseFloat(req.body.salary) : oldEmp.getSalary();
-        var deptId = typeof req.body.dept_id !== 'undefined' ? parseInt(req.body.dept_id) : oldEmp.getDeptId();
-        var mngId = typeof req.body.mng_id !== 'undefined' ? parseInt(req.body.mng_id) : oldEmp.getMngId();
+        var departmentID = typeof req.body.dept_id !== 'undefined' ? parseInt(req.body.dept_id) : oldEmp.getDeptId();
+        var managerID = typeof req.body.mng_id !== 'undefined' ? parseInt(req.body.mng_id) : oldEmp.getMngId();
 
-        if(dl.getDepartment(company, deptId) === null)
+        if(dl.getDepartment(company, departmentID) === null)
         {
-            return bl.badRequest(res, "Department ID provided not found");
+            return bl.badRequest(res, "Department ID given not found");
         }
         
-        if(!(mngId === 0 || dl.getEmployee(mngId) !== null)) 
+        if(!(managerID === 0 || dl.getEmployee(managerID) !== null)) 
         {
-            return bl.errorRequest(res, "Manager ID provided not found");
+            return bl.errorRequest(res, "Manager ID given not found");
         }
 
         if(hireDate === null)
@@ -162,14 +162,14 @@ router.route('/') .all(function(req, res, next)
         oldEmp.setHireDate(hireDate);
         oldEmp.setJob(job);
         oldEmp.setSalary(salary);
-        oldEmp.setDeptId(deptId);
-        oldEmp.setMngId(mngId);
+        oldEmp.setDeptId(departmentID);
+        oldEmp.setMngId(managerID);
 
         var updatedEmp = dl.updateEmployee(oldEmp);
 
         if(updatedEmp === null) 
         {
-            return bl.badRequest(res, "Requested employee does not exist or duplicate employee number provided")
+            return bl.badRequest(res, "Requested employee does not exist or duplicate employee number given.")
         }
 
         return bl.jsonOk(res, updatedEmp);
@@ -185,28 +185,28 @@ router.route('/') .all(function(req, res, next)
 .delete(function(req, res)
 {
     var company = req.query.company;
-    var empId = req.query.emp_id;
+    var employeeID = req.query.emp_id;
 
     if(!bl.validateCompanyName(company))
     {
         return bl.invalidCompany(res);
     }
 
-    if(!(empId > 0))
+    if(!(employeeID > 0))
     {
-        return bl.badRequest(res, "Invalid employee ID provided");
+        return bl.badRequest(res, "Invalid employee ID given.");
     }
     try
     {
         var dl = new DataLayer(company);
-        var deleted = dl.deleteEmployee(empId); 
+        var deleted = dl.deleteEmployee(employeeID); 
 
         if(!(deleted > 0)) 
         {
             return bl.errorRequest(res, "Employee ID not found")
         }
 
-        return bl.messageOk(res, "Employee " + empId + " deleted");
+        return bl.messageOk(res, "Employee " + employeeID + " deleted");
     }
     catch(ex) 
     {

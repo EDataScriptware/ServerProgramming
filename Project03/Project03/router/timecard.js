@@ -14,7 +14,7 @@ router.route('/') .all(function(req, res, next)
 .get(function(req, res)
 {
   var company = req.query.company;
-  var id = req.query.timecard_id;
+  var ID = req.query.timecard_id;
 
     try 
     {
@@ -28,7 +28,7 @@ router.route('/') .all(function(req, res, next)
 
         if(!(id > 0)) 
         {
-            return bl.badRequest(res, "Invalid timecard id provided");
+            return bl.badRequest(res, "Invalid timecard ID given.");
         }
 
         var card = dl.getTimecard(id);
@@ -39,7 +39,7 @@ router.route('/') .all(function(req, res, next)
         } 
         else 
         {
-            return bl.errorRequest(res, "Timecard ID not found.");
+            return bl.errorRequest(res, "Timecard ID not given.");
         }
     }
     catch(ex)
@@ -53,7 +53,7 @@ router.route('/') .all(function(req, res, next)
 .post(urlEncodedParser, function(req, res)
 {
   var company = req.body.company;
-  var empId = parseInt(req.body.emp_id);
+  var employeeID = parseInt(req.body.emp_id);
   var start = req.body.start_time;
   var end = req.body.end_time;
 
@@ -65,12 +65,12 @@ router.route('/') .all(function(req, res, next)
         }
 
         var dl = new dataLayer(company);
-        if(dl.getEmployee(empId) === null) 
+        if(dl.getEmployee(employeeID) === null) 
         {
             return bl.errorRequest(res, "Employee could not be found.");
         }
         
-        var empCards = dl.getAllTimecard(empId);
+        var empCards = dl.getAllTimecard(employeeID);
 
         var timestamps = bl.buildAndValidateTimestamps(start, end, empCards);
         if(timestamps === null)
@@ -78,7 +78,7 @@ router.route('/') .all(function(req, res, next)
           return bl.badRequest(res, "Invalid start and/or end dates.");
         }
       
-        var newCard = dl.insertTimecard(new dl.Timecard(timestamps[0], timestamps[1], empId));
+        var newCard = dl.insertTimecard(new dl.Timecard(timestamps[0], timestamps[1], employeeID));
       
         if(newCard !== null)
         {
@@ -110,24 +110,24 @@ router.route('/') .all(function(req, res, next)
 
         if(typeof req.body.timecard_id === "undefined")
         {
-            return bl.badRequest(res, "No timecard Id provided");
+            return bl.badRequest(res, "No timecard ID given.");
         }
       
-        var id = parseInt(req.body.timecard_id);
+        var ID = parseInt(req.body.timecard_id);
 
         var oldCard = dl.getTimecard(id);
 
       
         if(oldCard === null)
         {
-              return bl.errorRequest(res, "Could not find timecard id provided");
+              return bl.errorRequest(res, "Unable to find the timecard ID given.");
         }
 
-        var empId = (typeof req.body.emp_id !== "undefined") ? parseInt(req.body.emp_id) : oldCard.getEmpId();
+        var employeeID = (typeof req.body.emp_id !== "undefined") ? parseInt(req.body.emp_id) : oldCard.getEmpId();
         var start = (typeof req.body.start_time !== "undefined") ? req.body.start_time : oldCard.getStartTime();
         var end = (typeof req.body.end_time !== "undefined") ? req.body.end_time : oldCard.getEndTime();
 
-        oldCard.setEmpId(empId);
+        oldCard.setEmpId(employeeID);
         oldCard.setStartTime(start);
         oldCard.setEndTime(end);
 
@@ -156,7 +156,7 @@ router.route('/') .all(function(req, res, next)
 .delete(function(req, res)
 {
     var company = req.query.company;
-    var id = req.query.timecard_id;
+    var ID = req.query.timecard_id;
 
     try
     {
@@ -171,7 +171,7 @@ router.route('/') .all(function(req, res, next)
 
         if(deleted > 0)
         {
-            return bl.messageOk(res, "Timecard " + id + " deleted.")
+            return bl.messageOk(res, "Timecard " + ID + " deleted.")
         }
         else
         {

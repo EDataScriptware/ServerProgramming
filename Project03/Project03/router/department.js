@@ -14,7 +14,7 @@ router.route('/') .all(function(req, res, next)
 .get(function(req, res)
 {
     var company = String(req.query.company);
-    var id = req.query.dept_id;
+    var ID= req.query.dept_id;
 
     if(!bl.validateCompanyName(company))
     {
@@ -23,18 +23,18 @@ router.route('/') .all(function(req, res, next)
 
     if(!(id > 0))
     {
-        return bl.badRequest(res, "Invalid department ID provided.");
+        return bl.badRequest(res, "Invalid department ID given.");
     }
     try {
         var dl = new dataLayer(company);
-        var dept = dl.getDepartment(company, id);
+        var dept = dl.getDepartment(company, ID );
         if(dept !== null)
         {
             return bl.messageOk(res, dept);
         }
         else
         {
-            return bl.errorRequest(res, "Unable to find the provided department ID.")
+            return bl.errorRequest(res, "Unable to find the given department ID.")
         }
     }
     catch(ex) 
@@ -82,7 +82,7 @@ router.route('/') .all(function(req, res, next)
         }
         else
         {
-            return bl.badRequest(res, "Invald parameters provided");
+            return bl.badRequest(res, "Invalid parameters given.");
         }
     }
     catch(ex) {
@@ -104,13 +104,13 @@ router.route('/') .all(function(req, res, next)
     {
         var dl = new dataLayer(company);
 
-        var deptId = req.body.dept_id;
-        if(typeof deptId === 'undefined')
+        var departmentID = req.body.dept_id;
+        if(typeof departmentID === 'undefined')
         {
-            return bl.badRequest(res, "Department ID is not provided.")
+            return bl.badRequest(res, "Department ID is not given.")
         }
 
-        var oldDept = dl.getDepartment(company, deptId);
+        var oldDept = dl.getDepartment(company, departmentID);
 
         if(oldDept === null)
         {
@@ -134,7 +134,7 @@ router.route('/') .all(function(req, res, next)
         
         if(updatedDept === null) 
         {
-            return bl.badRequest(res, "Requested department does not exist or duplicate department number provided")
+            return bl.badRequest(res, "Given department does not exist or already department number given already exists.")
         }
 
         return bl.jsonOk(res, updatedDept);
@@ -150,26 +150,26 @@ router.route('/') .all(function(req, res, next)
 .delete(function(req, res)
 {
     var company = req.query.company;
-    var id = req.query.dept_id;
+    var ID= req.query.dept_id;
 
     if(!bl.validateCompanyName(company)) 
     {
         return bl.invalidCompany(res);
     }
 
-    if(typeof id === 'undefined' || id <= 0)
+    if(typeof ID=== 'undefined' || ID<= 0)
     {
-        return bl.badRequest(res, "No or improper Depratment ID provided")
+        return bl.badRequest(res, "No Department ID given.")
     }
 
     try 
     {
         var dl = new dataLayer(company);
-        var rows = dl.deleteDepartment(company, id);
+        var rows = dl.deleteDepartment(company, ID );
 
         if(rows === 0)
         {
-            return bl.errorRequest(res, "Provided department does not exist for the provided company")
+            return bl.errorRequest(res, "Given department does not exist under the given company")
         }
         return bl.messageOk(res, "Department "+id+" from "+company+" successfully deleted")
     }

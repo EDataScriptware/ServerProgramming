@@ -93,7 +93,7 @@ module.exports = class businessLayer
 
   invalidCompany(res)
   {
-    return res.status(404).json({error: "Company provided not located"}).end();
+    return res.status(404).json({error: "Unable to locate the company."}).end();
   }
 
   badRequest(res, msg) 

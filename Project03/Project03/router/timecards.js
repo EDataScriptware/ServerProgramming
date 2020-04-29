@@ -8,7 +8,7 @@ router.route('/') .get(function(req, res)
         var bl = new businessLayer();
 
         var company = req.query.company;
-        var empId = parseInt(req.query.emp_id);
+        var employeeID = parseInt(req.query.emp_id);
 
         if(!bl.validateCompanyName(company)) 
         {
@@ -19,10 +19,10 @@ router.route('/') .get(function(req, res)
         {
             var dl = new dataLayer(company);
             
-            if(dl.getEmployee(empId) != null) 
+            if(dl.getEmployee(employeeID) != null) 
             {
             
-                var cards = dl.getAllTimecard(empId);
+                var cards = dl.getAllTimecard(employeeID);
                 
                 if(cards.length > 0)
                 {
