@@ -14,14 +14,14 @@ router.route('/') .all(function(req, res, next)
 .get(function(req, res)
 {
     var company = String(req.query.company);
-    var ID= req.query.dept_id;
+    var ID = req.query.dept_id;
 
     if(!bl.validateCompanyName(company))
     {
         return bl.invalidCompany(res);
     }
 
-    if(!(id > 0))
+    if(!(ID > 0))
     {
         return bl.badRequest(res, "Invalid department ID given.");
     }
@@ -111,10 +111,10 @@ router.route('/') .all(function(req, res, next)
         }
 
         var oldDept = dl.getDepartment(company, departmentID);
-
+        
         if(oldDept === null)
         {
-            return bl.errorRequest(res, "Department requested could not be found")
+            return bl.errorRequest(res, "Department requested could not be found.")
         }
 
         var deptName = typeof req.body.dept_name !== 'undefined' ? String(req.body.dept_name) : oldDept.getDeptName();
@@ -134,6 +134,7 @@ router.route('/') .all(function(req, res, next)
         
         if(updatedDept === null) 
         {
+            console.log(updatedDept);
             return bl.badRequest(res, "Given department does not exist or already department number given already exists.")
         }
 
@@ -157,7 +158,7 @@ router.route('/') .all(function(req, res, next)
         return bl.invalidCompany(res);
     }
 
-    if(typeof ID=== 'undefined' || ID<= 0)
+    if(typeof ID === 'undefined' || ID<= 0)
     {
         return bl.badRequest(res, "No Department ID given.")
     }
@@ -165,13 +166,13 @@ router.route('/') .all(function(req, res, next)
     try 
     {
         var dl = new dataLayer(company);
-        var rows = dl.deleteDepartment(company, ID );
+        var rows = dl.deleteDepartment(company, ID);
 
         if(rows === 0)
         {
             return bl.errorRequest(res, "Given department does not exist under the given company")
         }
-        return bl.messageOk(res, "Department "+id+" from "+company+" successfully deleted")
+        return bl.messageOk(res, "Department "+ID+" from "+company+" successfully deleted")
     }
     catch(ex) {
         console.log(ex);

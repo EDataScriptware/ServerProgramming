@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var businessLayer = require("../businessLayer.js");
 var dataLayer = require("../companydata/index.js");
+var moment = require("moment");
 var json = express.json();
 var urlEncodedParser = express.urlencoded({extended:false});
 
@@ -26,12 +27,12 @@ router.route('/') .all(function(req, res, next)
 
         var dl = new dataLayer(company);
 
-        if(!(id > 0)) 
+        if(!(ID > 0)) 
         {
             return bl.badRequest(res, "Invalid timecard ID given.");
         }
 
-        var card = dl.getTimecard(id);
+        var card = dl.getTimecard(ID);
           
         if(card !== null)   
         {
@@ -65,6 +66,7 @@ router.route('/') .all(function(req, res, next)
         }
 
         var dl = new dataLayer(company);
+
         if(dl.getEmployee(employeeID) === null) 
         {
             return bl.errorRequest(res, "Employee could not be found.");
@@ -72,7 +74,10 @@ router.route('/') .all(function(req, res, next)
         
         var empCards = dl.getAllTimecard(employeeID);
 
-        var timestamps = bl.buildAndValidateTimestamps(start, end, empCards);
+        console.log("Time Cards")
+        console.log(req.body);
+
+        var timestamps = bl.validateTimestamps(start, end, empCards);
         if(timestamps === null)
         {
           return bl.badRequest(res, "Invalid start and/or end dates.");
@@ -115,7 +120,7 @@ router.route('/') .all(function(req, res, next)
       
         var ID = parseInt(req.body.timecard_id);
 
-        var oldCard = dl.getTimecard(id);
+        var oldCard = dl.getTimecard(ID);
 
       
         if(oldCard === null)
@@ -167,7 +172,7 @@ router.route('/') .all(function(req, res, next)
 
       var dl = new dataLayer(company);
 
-      var deleted = dl.deleteTimecard(id);
+      var deleted = dl.deleteTimecard(ID);
 
         if(deleted > 0)
         {

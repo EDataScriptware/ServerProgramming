@@ -21,14 +21,14 @@ router.route('/') .all(function(req, res, next)
         return bl.invalidCompany(res);
     }
 
-    if(!(id > 0)) 
+    if(!(ID > 0)) 
     {
         return bl.badRequest(res, "Invalid employee ID given.");
     }
     try 
     {
         var dl = new dataLayer(company);
-        var emp = dl.getEmployee(id);
+        var emp = dl.getEmployee(ID);
         if (emp !== null)
         {
             return bl.jsonOk(res, emp);
@@ -77,7 +77,7 @@ router.route('/') .all(function(req, res, next)
             return bl.errorRequest(res, "Manager ID given not found.");
         }
 
-        var validDate = bl.buildAndValidateDate(hireDate);
+        var validDate = bl.validateDate(hireDate);
         if(validDate === null) 
         {
             return bl.badRequest(res, "Hiring date given is invalid.");
@@ -87,6 +87,8 @@ router.route('/') .all(function(req, res, next)
         {
             empNo = empNo += "-" + company;
         }
+
+        console.log(req.body);
 
         var newEmp = dl.insertEmployee(new dl.Employee(empName, empNo, validDate, job, salary, departmentID, managerID));
 
@@ -104,7 +106,8 @@ router.route('/') .all(function(req, res, next)
     }
 })
 
-.put(json, function(req, res) {
+.put(json, function(req, res) 
+{
     var company = req.body.company;
 
     if(!bl.validateCompanyName(company))
@@ -114,7 +117,7 @@ router.route('/') .all(function(req, res, next)
 
     try
     {
-        var dl = new DataLayer(company);
+        var dl = new dataLayer(company);
 
         var employeeID = req.body.emp_id;
         if(typeof employeeID === 'undefined')
@@ -131,7 +134,7 @@ router.route('/') .all(function(req, res, next)
 
         var empName = typeof req.body.emp_name !== 'undefined' ? String(req.body.emp_name) : oldEmp.getEmpName();
         var empNo = typeof req.body.emp_no !== 'undefined' ? String(req.body.emp_no) : oldEmp.getEmpNo();
-        var hireDate = typeof req.body.hire_date !== 'undefined' ? bl.buildAndValidateDate(String(req.body.hire_date)) : oldEmp.getHireDate();
+        var hireDate = typeof req.body.hire_date !== 'undefined' ? bl.validateDate(String(req.body.hire_date)) : oldEmp.getHireDate();
         var job = typeof req.body.job !== 'undefined' ? String(req.body.job) : oldEmp.getJob();
         var salary = typeof req.body.salary !== 'undefined' ? parseFloat(req.body.salary) : oldEmp.getSalary();
         var departmentID = typeof req.body.dept_id !== 'undefined' ? parseInt(req.body.dept_id) : oldEmp.getDeptId();
@@ -198,7 +201,7 @@ router.route('/') .all(function(req, res, next)
     }
     try
     {
-        var dl = new DataLayer(company);
+        var dl = new dataLayer(company);
         var deleted = dl.deleteEmployee(employeeID); 
 
         if(!(deleted > 0)) 
@@ -210,7 +213,6 @@ router.route('/') .all(function(req, res, next)
     }
     catch(ex) 
     {
-        console.log(ex);
         return bl.errorMessage(res);
     }
 });
